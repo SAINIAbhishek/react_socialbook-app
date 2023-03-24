@@ -1,6 +1,6 @@
 # Socialbook Application
 
-It is a learning project. It is a complete (ReactJS / NodeJS) responsive MERN application. It showcases a social media application.
+It is a learning project. It is a complete (ReactJS / NodeJS) responsive MERN application. It showcases a social media application. It has Authentication and Authorization process.
 
 ![Application demo](Screenshot%202023-03-24%20134906.png)
 
