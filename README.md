@@ -2,6 +2,8 @@
 
 It is a learning project. It is a complete (ReactJS / NodeJS) responsive MERN application. It showcases a social media application.
 
+![Application demo](Screenshot%202023-03-24%20134906.png)
+
 ### Frontend stacks:
 - React.js
 - Redux
