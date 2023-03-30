@@ -1,9 +1,18 @@
 import {createSlice} from "@reduxjs/toolkit";
+import {UserType} from "../types/User";
+import {PostType} from "../types/Post";
 
-const initialState = {
+export type StateType = {
+  mode: string;
+  user: UserType;
+  token: string;
+  posts: PostType[]
+}
+
+const initialState: StateType = {
   mode: "light",
-  user: null,
-  token: null,
+  user: {} as UserType,
+  token: '',
   posts: [],
 };
 
@@ -19,8 +28,8 @@ export const authSlice = createSlice({
       state.token = action.payload.token;
     },
     setLogout: (state) => {
-      state.user = null;
-      state.token = null;
+      state.user = {} as UserType;
+      state.token = '';
     },
     setFriends: (state, action) => {
       if (state.user) {

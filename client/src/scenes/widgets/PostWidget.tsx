@@ -1,3 +1,4 @@
+import * as React from 'react';
 import {
   ChatBubbleOutlineOutlined,
   FavoriteBorderOutlined,
@@ -5,13 +6,13 @@ import {
   ShareOutlined,
 } from "@mui/icons-material";
 import { Box, Divider, IconButton, Typography, useTheme } from "@mui/material";
-import FlexBetween from "components/FlexBetween";
-import Friend from "components/Friend";
-import WidgetWrapper from "components/WidgetWrapper";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { setPost } from "state";
 import { LIKE_POST } from "../../apis/post";
+import {setPost, StateType} from "../../state";
+import WidgetWrapper from "../../components/WidgetWrapper";
+import Friend from "../../components/Friend";
+import FlexBetween from "../../components/FlexBetween";
 
 const PostWidget = ({
   postId,
@@ -26,12 +27,12 @@ const PostWidget = ({
 }) => {
   const [isComments, setIsComments] = useState(false);
   const dispatch = useDispatch();
-  const token = useSelector((state) => state.token);
-  const loggedInUserId = useSelector((state) => state.user._id);
+  const token = useSelector((state: StateType) => state.token);
+  const loggedInUserId = useSelector((state: StateType) => state.user._id);
   const isLiked = Boolean(likes[loggedInUserId]);
   const likeCount = Object.keys(likes).length;
 
-  const { palette } = useTheme();
+  const { palette }: any = useTheme();
   const main = palette.neutral.main;
   const primary = palette.primary.main;
 

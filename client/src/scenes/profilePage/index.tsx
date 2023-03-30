@@ -1,18 +1,21 @@
+import * as React from "react";
 import { Box, useMediaQuery } from "@mui/material";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import Navbar from "scenes/navbar";
-import FriendListWidget from "scenes/widgets/FriendListWidget";
-import MyPostWidget from "scenes/widgets/MyPostWidget";
-import PostsWidget from "scenes/widgets/PostsWidget";
-import UserWidget from "scenes/widgets/UserWidget";
 import { GET_USER } from "../../apis/user";
+import {StateType} from "../../state";
+import UserWidget from "../widgets/UserWidget";
+import FriendListWidget from "../widgets/FriendListWidget";
+import MyPostWidget from "../widgets/MyPostWidget";
+import PostsWidget from "../widgets/PostsWidget";
+import {UserType} from "../../types/User";
+import Navbar from "../navbar";
 
 const ProfilePage = () => {
-  const [user, setUser] = useState(null);
-  const { userId } = useParams();
-  const token = useSelector((state) => state.token);
+  const [user, setUser] = useState({} as UserType);
+  const { userId }: any = useParams();
+  const token = useSelector((state: StateType) => state.token);
   const isNonMobileScreens = useMediaQuery("(min-width:1000px)");
 
   const getUser = async () => {

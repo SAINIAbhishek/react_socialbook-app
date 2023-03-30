@@ -1,6 +1,6 @@
 import { BASE_API_URL } from "./base";
 
-export async function CREATE_POST(userId, post, image, token) {
+export async function CREATE_POST(userId: string, post: string, image: any, token: string) {
   const formData = new FormData();
   formData.append("userId", userId);
   formData.append("description", post);
@@ -15,7 +15,7 @@ export async function CREATE_POST(userId, post, image, token) {
   }).then((response) => response.json());
 }
 
-export async function LIKE_POST(loggedInUserId, postId, token) {
+export async function LIKE_POST(loggedInUserId: string, postId: string, token: string) {
   return await fetch(`${BASE_API_URL}posts/${postId}/like`, {
     method: "PATCH",
     headers: {
@@ -26,7 +26,7 @@ export async function LIKE_POST(loggedInUserId, postId, token) {
   }).then((response) => response.json());
 }
 
-export async function GET_POSTS(token) {
+export async function GET_POSTS(token: string) {
   return await fetch(`${BASE_API_URL}posts`, {
     method: "GET",
     headers: { Authorization: `Bearer ${token}` },

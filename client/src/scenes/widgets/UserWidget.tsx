@@ -1,3 +1,4 @@
+import * as React from 'react';
 import {
   ManageAccountsOutlined,
   EditOutlined,
@@ -5,19 +6,20 @@ import {
   WorkOutlineOutlined,
 } from "@mui/icons-material";
 import { Box, Typography, Divider, useTheme } from "@mui/material";
-import UserImage from "components/UserImage";
-import FlexBetween from "components/FlexBetween";
-import WidgetWrapper from "components/WidgetWrapper";
 import { useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { GET_USER } from "../../apis/user";
+import WidgetWrapper from "../../components/WidgetWrapper";
+import FlexBetween from "../../components/FlexBetween";
+import UserImage from "../../components/UserImage";
+import {StateType} from "../../state";
 
 const UserWidget = ({ userId, picturePath }) => {
-  const [user, setUser] = useState(null);
-  const { palette } = useTheme();
+  const [user, setUser] = useState({} as any);
+  const { palette }: any = useTheme();
   const navigate = useNavigate();
-  const token = useSelector((state) => state.token);
+  const token = useSelector((state: StateType) => state.token);
   const dark = palette.neutral.dark;
   const medium = palette.neutral.medium;
   const main = palette.neutral.main;
@@ -69,7 +71,7 @@ const UserWidget = ({ userId, picturePath }) => {
             >
               {firstName} {lastName}
             </Typography>
-            <Typography color={medium}>{friends.length} friends</Typography>
+            <Typography color={medium}>{friends?.length} friends</Typography>
           </Box>
         </FlexBetween>
         <ManageAccountsOutlined />

@@ -1,16 +1,17 @@
+import * as React from "react";
 import { Box, Typography, useTheme } from "@mui/material";
-import Friend from "components/Friend";
-import WidgetWrapper from "components/WidgetWrapper";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { setFriends } from "state";
 import { GET_FRIENDS } from "../../apis/user";
+import {setFriends, StateType} from "../../state";
+import WidgetWrapper from "../../components/WidgetWrapper";
+import Friend from "../../components/Friend";
 
 const FriendListWidget = ({ userId }) => {
   const dispatch = useDispatch();
-  const { palette } = useTheme();
-  const token = useSelector((state) => state.token);
-  const friends = useSelector((state) => state.user.friends);
+  const { palette }: any = useTheme();
+  const token = useSelector((state: StateType) => state.token);
+  const friends = useSelector((state: StateType) => state.user.friends);
 
   const getFriends = async () => {
     const data = await GET_FRIENDS(userId, token);
