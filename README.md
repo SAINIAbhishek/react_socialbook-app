@@ -25,7 +25,7 @@ It is a learning project. It is a complete (ReactJS / NodeJS) responsive MERN ap
 - Bcrypt
 - CORS
 - Body parser
-- Helmet
+- Helmet (helps you secure your Node. js application by setting several HTTP headers)
 - JSON Web Token
 - Multer
 - Mongoose
