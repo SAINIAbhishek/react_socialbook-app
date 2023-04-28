@@ -6,12 +6,12 @@ import { createTheme } from '@mui/material/styles';
 import { useMemo } from 'react';
 import { AppStateType } from './types/AppStateType';
 import { THEME_SETTINGS } from './Theme';
-import { LoginPage } from './pages/login/LoginPage';
-import { RegisterPage } from './pages/register/RegisterPage';
 import { HomePage } from './pages/home/HomePage';
 import { ProfilePage } from './pages/profile/ProfilePage';
 import ProtectedRoutes from './routes/ProtectedRoutes';
 import PublicRoutes from './routes/PublicRoutes';
+import LoginPage from './pages/login/LoginPage';
+import RegisterPage from './pages/register/RegisterPage';
 
 function App() {
   const mode = useSelector((state: AppStateType) => state.mode);

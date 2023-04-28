@@ -11,9 +11,9 @@ import {
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { Formik } from 'formik';
-import { LoginFormType } from '../../types/FormType';
 import { LOGGED_IN } from '../../apis/auth/Auth';
 import { setLogin } from '../../states/AppState';
+import { LoginType } from '../../types/LoginType';
 
 const loginSchema = yup.object().shape({
   email: yup
@@ -23,18 +23,18 @@ const loginSchema = yup.object().shape({
   password: yup.string().required('Password is required.'),
 });
 
-const initialValuesLogin: LoginFormType = {
+const initialValuesLogin: LoginType = {
   email: '',
   password: '',
 };
 
-export const LoginForm = () => {
+const LoginForm = () => {
   const { palette } = useTheme();
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const isNonMobile = useMediaQuery('(min-width:600px)');
 
-  const handleFormSubmit = async (values: LoginFormType) => {
+  const handleFormSubmit = async (values: LoginType) => {
     const loggedIn = await LOGGED_IN(values);
     if (loggedIn) {
       dispatch(
@@ -124,3 +124,5 @@ export const LoginForm = () => {
     </Formik>
   );
 };
+
+export default LoginForm;

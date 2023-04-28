@@ -1,6 +1,5 @@
 import * as React from 'react';
 import * as yup from 'yup';
-import { RegisterFormType } from '../../types/FormType';
 import {
   Box,
   Button,
@@ -15,6 +14,7 @@ import Dropzone from 'react-dropzone';
 import EditOutlinedIcon from '@mui/icons-material/EditOutlined';
 import { Formik } from 'formik';
 import { FlexBetween } from '../../layouts/flex-between/FlexBetween';
+import { RegisterType } from '../../types/RegisterType';
 
 const registerSchema = yup.object().shape({
   firstName: yup.string().required('First name is required.'),
@@ -29,7 +29,7 @@ const registerSchema = yup.object().shape({
   picture: yup.string().required('Picture is required.'),
 });
 
-const initialValuesRegister: RegisterFormType = {
+const initialValuesRegister: RegisterType = {
   firstName: '',
   lastName: '',
   email: '',
@@ -39,12 +39,12 @@ const initialValuesRegister: RegisterFormType = {
   picture: '',
 };
 
-export const RegisterForm = () => {
+const RegisterForm = () => {
   const { palette } = useTheme();
   const navigate = useNavigate();
   const isNonMobile = useMediaQuery('(min-width:600px)');
 
-  const handleFormSubmit = async (values: RegisterFormType) => {
+  const handleFormSubmit = async (values: RegisterType) => {
     await REGISTER(values);
     navigate('/login');
   };
@@ -207,3 +207,5 @@ export const RegisterForm = () => {
     </>
   );
 };
+
+export default RegisterForm;

@@ -1,7 +1,8 @@
 import * as React from 'react';
-import { Box, Typography, useTheme } from '@mui/material';
+import { Box, useTheme } from '@mui/material';
+import Heading from '../../components/heading/Heading';
 
-export const NonAuthNavbar = () => {
+const NavbarUnAuth = () => {
   const background = useTheme().palette.background['alt'];
 
   return (
@@ -12,9 +13,9 @@ export const NonAuthNavbar = () => {
         padding: '1rem 6%',
         textAlign: 'center',
       }}>
-      <Typography fontWeight="bold" variant="h1" color="primary">
-        Socialbook
-      </Typography>
+      <Heading title="Socialbook" />
     </Box>
   );
 };
+
+export default NavbarUnAuth;
