@@ -1,4 +1,5 @@
 import { Box } from '@mui/material';
+import { ENV } from '../../environments/Environment';
 
 type Props = {
   image: string;
@@ -6,17 +7,20 @@ type Props = {
 };
 
 const UserImage = ({ image, size = '60px' }: Props) => {
-  if (!image) return '';
   return (
-    <Box width={size} height={size}>
-      <img
-        style={{ objectFit: 'cover', borderRadius: '50%' }}
-        width={size}
-        height={size}
-        alt="user"
-        src={`http://localhost:3001/assets/${image}`}
-      />
-    </Box>
+    <>
+      {!!image && (
+        <Box width={size} height={size}>
+          <img
+            style={{ objectFit: 'cover', borderRadius: '50%' }}
+            width={size}
+            height={size}
+            alt="user"
+            src={`${ENV.ASSETS_URL}/${image}`}
+          />
+        </Box>
+      )}
+    </>
   );
 };
 

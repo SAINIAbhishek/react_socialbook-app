@@ -29,8 +29,9 @@ import { UserType } from '../../types/UserType';
 import { CONFIG } from '../../config/Config';
 import { FlexBetween } from '../flex-between/FlexBetween';
 
-export const Navbar = () => {
+const Navbar = () => {
   const [isMobileMenuToggled, setIsMobileMenuToggled] = useState(false);
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const user: UserType = useSelector((state: AppStateType) => state.user);
@@ -190,3 +191,5 @@ export const Navbar = () => {
     </FlexBetween>
   );
 };
+
+export default Navbar;

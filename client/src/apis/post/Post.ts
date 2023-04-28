@@ -13,7 +13,7 @@ export async function CREATE_POST(
     formData.append('picture', image);
     formData.append('picturePath', image.name);
   }
-  return await fetch(`${ENV.BASE_API_URL}posts`, {
+  return await fetch(`${ENV.BASE_API_URL}/posts`, {
     method: 'POST',
     headers: { Authorization: `Bearer ${token}` },
     body: formData,
@@ -25,7 +25,7 @@ export async function LIKE_POST(
   postId: string,
   token: string
 ) {
-  return await fetch(`${ENV.BASE_API_URL}posts/${postId}/like`, {
+  return await fetch(`${ENV.BASE_API_URL}/posts/${postId}/like`, {
     method: 'PATCH',
     headers: {
       Authorization: `Bearer ${token}`,
@@ -36,7 +36,7 @@ export async function LIKE_POST(
 }
 
 export async function GET_POSTS(token: string) {
-  return await fetch(`${ENV.BASE_API_URL}posts`, {
+  return await fetch(`${ENV.BASE_API_URL}/posts`, {
     method: 'GET',
     headers: { Authorization: `Bearer ${token}` },
   }).then((response) => response.json());

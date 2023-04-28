@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Box, useMediaQuery } from '@mui/material';
 import { useSelector } from 'react-redux';
-import { Navbar } from '../../layouts/navbar/Navbar';
+import Navbar from '../../layouts/navbar/Navbar';
 import { AppStateType } from '../../types/AppStateType';
 import { CONFIG } from '../../config/Config';
 import UserWidget from '../../components/widgets/user-widget/UserWidget';

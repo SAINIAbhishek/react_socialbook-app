@@ -6,16 +6,18 @@ import { useParams } from 'react-router-dom';
 import { GET_USER } from '../../apis/user/User';
 import { UserType } from '../../types/UserType';
 import { AppStateType } from '../../types/AppStateType';
-import { Navbar } from '../../layouts/navbar/Navbar';
 import { CONFIG } from '../../config/Config';
 import UserWidget from '../../components/widgets/user-widget/UserWidget';
 import FriendListWidget from '../../components/widgets/friend-list-widget/FriendListWidget';
 import MyPostWidget from '../../components/widgets/my-post-widget/MyPostWidget';
 import PostsWidget from '../../components/widgets/posts-widget/PostsWidget';
+import Navbar from '../../layouts/navbar/Navbar';
 
 export const ProfilePage = () => {
   const [user, setUser] = useState({} as UserType);
+
   const { userId }: any = useParams();
+
   const token = useSelector((state: AppStateType) => state.token);
   const isNonMobileScreens = useMediaQuery(CONFIG.DESKTOP_MIN_WIDTH);
 
