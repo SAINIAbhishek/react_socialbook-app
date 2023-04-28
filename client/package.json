@@ -1,6 +1,6 @@
 {
-  "name": "client",
-  "version": "0.1.0",
+  "name": "socialbook_client",
+  "version": "1.0.0",
   "dependencies": {
     "@emotion/react": "^11.10.5",
     "@emotion/styled": "^11.10.5",
@@ -8,10 +8,6 @@
     "@mui/material": "^5.10.11",
     "@mui/system": "^5.11.14",
     "@reduxjs/toolkit": "^1.8.6",
-    "@types/react-redux": "^7.1.25",
-    "@testing-library/jest-dom": "^5.16.5",
-    "@testing-library/react": "^13.4.0",
-    "@testing-library/user-event": "^13.5.0",
     "dotenv": "^16.0.3",
     "formik": "^2.2.9",
     "react": "^18.2.0",
@@ -28,13 +24,10 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
-  },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
+    "eject": "react-scripts eject",
+    "eslint": "eslint . --ext .ts,.tsx",
+    "eslint:fix": "npm run eslint --fix",
+    "prettier": "prettier . --write"
   },
   "browserslist": {
     "production": [
@@ -47,5 +40,15 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@testing-library/jest-dom": "^5.16.5",
+    "@testing-library/react": "^13.4.0",
+    "@testing-library/user-event": "^13.5.0",
+    "@types/react-redux": "^7.1.25",
+    "eslint-config-prettier": "^8.8.0",
+    "eslint-plugin-check-file": "^2.2.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "prettier": "2.8.8"
   }
 }

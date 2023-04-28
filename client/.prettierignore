@@ -1,0 +1,7 @@
+/node_modules
+/build
+/coverage
+/public
+/dist
+/node_modules
+*.md4
