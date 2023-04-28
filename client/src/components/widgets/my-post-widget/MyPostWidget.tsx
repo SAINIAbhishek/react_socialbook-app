@@ -20,13 +20,13 @@ import {
 } from '@mui/material';
 import Dropzone from 'react-dropzone';
 import { useDispatch, useSelector } from 'react-redux';
-import { CREATE_POST } from '../../apis/post/Post';
-import { setPosts } from '../../states/AppState';
+import { CREATE_POST } from '../../../apis/post/Post';
+import { setPosts } from '../../../states/AppState';
 import { useState } from 'react';
-import { AppStateType } from '../../types/AppStateType';
-import { FlexBetween } from '../../layouts/flex-between/FlexBetween';
-import { WidgetWrapper } from '../../layouts/widget-wrapper/WidgetWrapper';
-import UserImage from '../user-image/UserImage';
+import { AppStateType } from '../../../types/AppStateType';
+import { FlexBetween } from '../../../layouts/flex-between/FlexBetween';
+import { WidgetWrapper } from '../../../layouts/widget-wrapper/WidgetWrapper';
+import UserImage from '../../user-image/UserImage';
 
 type Props = {
   picturePath: string;

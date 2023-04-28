@@ -6,7 +6,7 @@ import { createTheme } from '@mui/material/styles';
 import { useMemo } from 'react';
 import { AppStateType } from './types/AppStateType';
 import { THEME_SETTINGS } from './Theme';
-import { HomePage } from './pages/home/HomePage';
+import HomePage from './pages/home/HomePage';
 import { ProfilePage } from './pages/profile/ProfilePage';
 import ProtectedRoutes from './routes/ProtectedRoutes';
 import PublicRoutes from './routes/PublicRoutes';

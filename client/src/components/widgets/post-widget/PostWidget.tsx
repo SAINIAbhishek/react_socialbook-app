@@ -8,12 +8,12 @@ import {
 import { Box, Divider, IconButton, Typography, useTheme } from '@mui/material';
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { LIKE_POST } from '../../apis/post/Post';
-import { setPost } from '../../states/AppState';
-import { AppStateType } from '../../types/AppStateType';
-import { FlexBetween } from '../../layouts/flex-between/FlexBetween';
-import { WidgetWrapper } from '../../layouts/widget-wrapper/WidgetWrapper';
-import Friend from '../friend/Friend';
+import { LIKE_POST } from '../../../apis/post/Post';
+import { setPost } from '../../../states/AppState';
+import { AppStateType } from '../../../types/AppStateType';
+import { FlexBetween } from '../../../layouts/flex-between/FlexBetween';
+import { WidgetWrapper } from '../../../layouts/widget-wrapper/WidgetWrapper';
+import Friend from '../../friend/Friend';
 
 type Props = {
   postId: string;

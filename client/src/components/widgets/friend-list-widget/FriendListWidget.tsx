@@ -2,11 +2,11 @@ import * as React from 'react';
 import { Box, Typography, useTheme } from '@mui/material';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { GET_FRIENDS } from '../../apis/user/User';
-import { setFriends } from '../../states/AppState';
-import { AppStateType } from '../../types/AppStateType';
-import { WidgetWrapper } from '../../layouts/widget-wrapper/WidgetWrapper';
-import Friend from '../friend/Friend';
+import { GET_FRIENDS } from '../../../apis/user/User';
+import { setFriends } from '../../../states/AppState';
+import { AppStateType } from '../../../types/AppStateType';
+import { WidgetWrapper } from '../../../layouts/widget-wrapper/WidgetWrapper';
+import Friend from '../../friend/Friend';
 
 type Props = {
   userId: string;

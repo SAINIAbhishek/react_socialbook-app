@@ -8,10 +8,10 @@ import { UserType } from '../../types/UserType';
 import { AppStateType } from '../../types/AppStateType';
 import { Navbar } from '../../layouts/navbar/Navbar';
 import { CONFIG } from '../../config/Config';
-import UserWidget from '../../components/user-widget/UserWidget';
-import FriendListWidget from '../../components/friend-list-widget/FriendListWidget';
-import MyPostWidget from '../../components/my-post-widget/MyPostWidget';
-import PostsWidget from '../../components/posts-widget/PostsWidget';
+import UserWidget from '../../components/widgets/user-widget/UserWidget';
+import FriendListWidget from '../../components/widgets/friend-list-widget/FriendListWidget';
+import MyPostWidget from '../../components/widgets/my-post-widget/MyPostWidget';
+import PostsWidget from '../../components/widgets/posts-widget/PostsWidget';
 
 export const ProfilePage = () => {
   const [user, setUser] = useState({} as UserType);

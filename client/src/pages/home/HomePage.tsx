@@ -4,13 +4,13 @@ import { useSelector } from 'react-redux';
 import { Navbar } from '../../layouts/navbar/Navbar';
 import { AppStateType } from '../../types/AppStateType';
 import { CONFIG } from '../../config/Config';
-import UserWidget from '../../components/user-widget/UserWidget';
-import MyPostWidget from '../../components/my-post-widget/MyPostWidget';
-import PostsWidget from '../../components/posts-widget/PostsWidget';
-import AdvertWidget from '../../components/advert-widget/AdvertWidget';
-import FriendListWidget from '../../components/friend-list-widget/FriendListWidget';
+import UserWidget from '../../components/widgets/user-widget/UserWidget';
+import MyPostWidget from '../../components/widgets/my-post-widget/MyPostWidget';
+import PostsWidget from '../../components/widgets/posts-widget/PostsWidget';
+import AdvertWidget from '../../components/widgets/advert-widget/AdvertWidget';
+import FriendListWidget from '../../components/widgets/friend-list-widget/FriendListWidget';
 
-export const HomePage = () => {
+const HomePage = () => {
   const isNonMobileScreens = useMediaQuery(CONFIG.DESKTOP_MIN_WIDTH);
   const { _id, picturePath } = useSelector((state: AppStateType) => state.user);
 
@@ -43,3 +43,5 @@ export const HomePage = () => {
     </Box>
   );
 };
+
+export default HomePage;

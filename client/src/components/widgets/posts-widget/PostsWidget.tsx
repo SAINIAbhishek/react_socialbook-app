@@ -1,9 +1,9 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { GET_POSTS } from '../../apis/post/Post';
-import { GET_USER_POSTS } from '../../apis/user/User';
-import { setPosts } from '../../states/AppState';
-import { AppStateType } from '../../types/AppStateType';
+import { GET_POSTS } from '../../../apis/post/Post';
+import { GET_USER_POSTS } from '../../../apis/user/User';
+import { setPosts } from '../../../states/AppState';
+import { AppStateType } from '../../../types/AppStateType';
 import PostWidget from '../post-widget/PostWidget';
 
 type Props = {

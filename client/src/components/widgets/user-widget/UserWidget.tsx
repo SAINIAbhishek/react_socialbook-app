@@ -9,11 +9,11 @@ import { Box, Typography, Divider, useTheme } from '@mui/material';
 import { useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { GET_USER } from '../../apis/user/User';
-import { AppStateType } from '../../types/AppStateType';
-import { FlexBetween } from '../../layouts/flex-between/FlexBetween';
-import { WidgetWrapper } from '../../layouts/widget-wrapper/WidgetWrapper';
-import UserImage from '../user-image/UserImage';
+import { GET_USER } from '../../../apis/user/User';
+import { AppStateType } from '../../../types/AppStateType';
+import { FlexBetween } from '../../../layouts/flex-between/FlexBetween';
+import { WidgetWrapper } from '../../../layouts/widget-wrapper/WidgetWrapper';
+import UserImage from '../../user-image/UserImage';
 
 type Props = {
   userId: string;
@@ -122,7 +122,7 @@ const UserWidget = ({ userId, picturePath }: Props) => {
 
         <FlexBetween gap="1rem" mb="0.5rem">
           <FlexBetween gap="1rem">
-            <img src="../../assets/images/twitter.png" alt="twitter" />
+            <img src="../../../assets/images/twitter.png" alt="twitter" />
             <Box>
               <Typography color={main} fontWeight="500">
                 Twitter
@@ -135,7 +135,7 @@ const UserWidget = ({ userId, picturePath }: Props) => {
 
         <FlexBetween gap="1rem">
           <FlexBetween gap="1rem">
-            <img src="../../assets/images/linkedin.png" alt="linkedin" />
+            <img src="../../../assets/images/linkedin.png" alt="linkedin" />
             <Box>
               <Typography color={main} fontWeight="500">
                 Linkedin
