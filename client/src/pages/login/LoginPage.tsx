@@ -1,12 +1,12 @@
 import * as React from 'react';
-import AuthWrapper from '../../layouts/auth-wrapper/AuthWrapper';
+import UnAuth from '../../layouts/unauth/UnAuth';
 import LoginForm from './LoginForm';
 
 const LoginPage = () => {
   return (
-    <AuthWrapper title="Welcome to your social community">
+    <UnAuth title="Welcome to your social community">
       <LoginForm />
-    </AuthWrapper>
+    </UnAuth>
   );
 };
 
