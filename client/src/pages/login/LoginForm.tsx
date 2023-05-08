@@ -1,4 +1,3 @@
-import * as React from 'react';
 import * as yup from 'yup';
 import {
   Box,
@@ -8,12 +7,13 @@ import {
   useMediaQuery,
   useTheme,
 } from '@mui/material';
-import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { Formik } from 'formik';
-import { LOGGED_IN } from '../../apis/auth/Auth';
-import { setLogin } from '../../states/AppState';
 import { LoginType } from '../../types/LoginType';
+
+type Props = {
+  handleFormSubmit: (values: LoginType) => void;
+};
 
 const loginSchema = yup.object().shape({
   email: yup
@@ -28,24 +28,10 @@ const initialValuesLogin: LoginType = {
   password: '',
 };
 
-const LoginForm = () => {
+const LoginForm = ({ handleFormSubmit }: Props) => {
   const { palette } = useTheme();
-  const dispatch = useDispatch();
   const navigate = useNavigate();
   const isNonMobile = useMediaQuery('(min-width:600px)');
-
-  const handleFormSubmit = async (values: LoginType) => {
-    const loggedIn = await LOGGED_IN(values);
-    if (loggedIn) {
-      dispatch(
-        setLogin({
-          user: loggedIn.user,
-          token: loggedIn.token,
-        })
-      );
-      navigate('/home');
-    }
-  };
 
   return (
     <Formik

@@ -1,13 +1,12 @@
-import * as React from 'react';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { useMemo } from 'react';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { CssBaseline, ThemeProvider } from '@mui/material';
 import { createTheme } from '@mui/material/styles';
-import { useMemo } from 'react';
 import { AppStateType } from './types/AppStateType';
 import { THEME_SETTINGS } from './Theme';
 import HomePage from './pages/home/HomePage';
-import { ProfilePage } from './pages/profile/ProfilePage';
+// import { ProfilePage } from './pages/profile/ProfilePage';
 import ProtectedRoutes from './routes/ProtectedRoutes';
 import PublicRoutes from './routes/PublicRoutes';
 import LoginPage from './pages/login/LoginPage';
@@ -25,7 +24,7 @@ function App() {
           <Routes>
             <Route element={<ProtectedRoutes />}>
               <Route path="/home" element={<HomePage />} />
-              <Route path="/profile/:userId" element={<ProfilePage />} />
+              {/*<Route path="/profile/:userId" element={<ProfilePage />} />*/}
             </Route>
             <Route element={<PublicRoutes />}>
               <Route path="/login" element={<LoginPage />} />

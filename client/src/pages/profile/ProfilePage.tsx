@@ -1,36 +1,43 @@
-import * as React from 'react';
+/*
 import { Box, useMediaQuery } from '@mui/material';
-import { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
-import { GET_USER } from '../../apis/user/User';
+import { GET_USER, GET_USER_POSTS } from '../../apis/user/User';
 import { UserType } from '../../types/UserType';
-import { AppStateType } from '../../types/AppStateType';
 import { CONFIG } from '../../config/Config';
 import UserWidget from '../../components/widgets/user-widget/UserWidget';
 import FriendListWidget from '../../components/widgets/friend-list-widget/FriendListWidget';
 import MyPostWidget from '../../components/widgets/my-post-widget/MyPostWidget';
 import PostsWidget from '../../components/widgets/posts-widget/PostsWidget';
 import Navbar from '../../layouts/navbar/Navbar';
+import { useQuery } from 'react-query';
+import { PostType } from '../../types/PostType';
 
 export const ProfilePage = () => {
-  const [user, setUser] = useState({} as UserType);
-
   const { userId }: any = useParams();
-
-  const token = useSelector((state: AppStateType) => state.token);
   const isNonMobileScreens = useMediaQuery(CONFIG.DESKTOP_MIN_WIDTH);
 
-  const getUser = async () => {
-    const data = await GET_USER(userId, token);
-    setUser(data);
-  };
+  const { data: userData } = useQuery(
+    ['profile', userId],
+    () => GET_USER(userId),
+    {
+      onError: (err: Error) => console.error(err),
+    }
+  );
 
-  useEffect(() => {
-    getUser().then();
-  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+  const user: UserType = userData?.data || null;
 
-  if (!user) return null;
+  const { data: userPostsData } = useQuery(
+    ['profile-user-posts', userId],
+    GET_USER_POSTS,
+    {
+      onError: (err: Error) => console.error(err),
+      enabled: !!user,
+    }
+  );
+
+  const userPosts: PostType[] = userPostsData?.data || [];
+
+  if (!user) return <></>;
 
   return (
     <Box>
@@ -51,9 +58,10 @@ export const ProfilePage = () => {
           mt={isNonMobileScreens ? undefined : '2rem'}>
           <MyPostWidget picturePath={user.picturePath} />
           <Box m="2rem 0" />
-          <PostsWidget userId={userId} isProfile />
+          <PostsWidget data={userPosts} />
         </Box>
       </Box>
     </Box>
   );
 };
+*/

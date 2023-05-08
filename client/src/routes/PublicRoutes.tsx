@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { useSelector } from 'react-redux';
 import { AppStateType } from '../types/AppStateType';
 import { Navigate, Outlet } from 'react-router-dom';

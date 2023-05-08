@@ -1,3 +1,4 @@
+/*
 import * as React from 'react';
 import { Box, Typography, useTheme } from '@mui/material';
 import { useEffect } from 'react';
@@ -52,3 +53,4 @@ const FriendListWidget = ({ userId }: Props) => {
 };
 
 export default FriendListWidget;
+*/

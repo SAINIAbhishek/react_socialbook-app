@@ -1,3 +1,4 @@
+/*
 import * as React from 'react';
 import {
   EditOutlined,
@@ -158,3 +159,4 @@ const MyPostWidget = ({ picturePath }: Props) => {
 };
 
 export default MyPostWidget;
+*/

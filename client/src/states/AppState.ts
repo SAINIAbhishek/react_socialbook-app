@@ -1,12 +1,12 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { UserType } from '../types/UserType';
 import { AppStateType } from '../types/AppStateType';
+import { CONFIG } from '../config/Config';
+import { UserType } from '../types/UserType';
 
 const initialState: AppStateType = {
   mode: 'light',
   user: {} as UserType,
-  token: '',
-  posts: [],
+  accessToken: '',
 };
 
 export const APP_STATE_SLICE = createSlice({
@@ -18,11 +18,11 @@ export const APP_STATE_SLICE = createSlice({
     },
     setLogin: (state, action) => {
       state.user = action.payload.user;
-      state.token = action.payload.token;
     },
     setLogout: (state) => {
       state.user = {} as UserType;
-      state.token = '';
+      state.accessToken = '';
+      sessionStorage.removeItem(CONFIG.ACCESS_TOKEN);
     },
     setFriends: (state, action) => {
       if (state.user) {
@@ -31,18 +31,9 @@ export const APP_STATE_SLICE = createSlice({
         console.error('user friends non-existent :(');
       }
     },
-    setPosts: (state, action) => {
-      state.posts = action.payload.posts;
-    },
-    setPost: (state, action) => {
-      state.posts = state.posts.map((post) => {
-        if (post._id === action.payload.post._id) return action.payload.post;
-        return post;
-      });
-    },
   },
 });
 
-export const { setMode, setLogin, setLogout, setFriends, setPosts, setPost } =
+export const { setMode, setLogin, setLogout, setFriends } =
   APP_STATE_SLICE.actions;
 export default APP_STATE_SLICE.reducer;

@@ -1,3 +1,4 @@
+/*
 import * as React from 'react';
 import {
   ChatBubbleOutlineOutlined,
@@ -14,30 +15,28 @@ import { AppStateType } from '../../../types/AppStateType';
 import { FlexBetween } from '../../../layouts/flex-between/FlexBetween';
 import { WidgetWrapper } from '../../../layouts/widget-wrapper/WidgetWrapper';
 import Friend from '../../friend/Friend';
+import { PostType } from '../../../types/PostType';
 
 type Props = {
-  postId: string;
-  postUserId: string;
-  name: string;
-  description: string;
-  location: string;
-  picturePath: string;
-  userPicturePath: string;
-  likes: string;
-  comments: [string];
+  data: PostType;
 };
 
-const PostWidget = ({
-  postId,
-  postUserId,
-  name,
-  description,
-  location,
-  picturePath,
-  userPicturePath,
-  likes,
-  comments,
-}: Props) => {
+const PostWidget = ({ data }: Props) => {
+  const {
+    _id,
+    userId,
+    firstName,
+    lastName,
+    description,
+    location,
+    picturePath,
+    userPicturePath,
+    likes,
+    comments,
+  } = data;
+
+  const name = `${firstName} ${lastName}`;
+
   const [isComments, setIsComments] = useState(false);
   const dispatch = useDispatch();
   const token = useSelector((state: AppStateType) => state.token);
@@ -50,14 +49,14 @@ const PostWidget = ({
   const primary = palette.primary.main;
 
   const patchLike = async () => {
-    const updatedPost = await LIKE_POST(loggedInUserId, postId, token);
+    const updatedPost = await LIKE_POST(loggedInUserId, _id, token);
     dispatch(setPost({ post: updatedPost }));
   };
 
   return (
     <WidgetWrapper m="2rem 0">
       <Friend
-        friendId={postUserId}
+        friendId={userId}
         name={name}
         subtitle={location}
         userPicturePath={userPicturePath}
@@ -117,3 +116,4 @@ const PostWidget = ({
 };
 
 export default PostWidget;
+*/
