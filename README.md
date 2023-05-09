@@ -2,7 +2,7 @@
 
 It is a learning project to showcase a Social Media Application. Frontend is developed in React.js and Backend is developed in Node.js. 
 
-It demonstrates the use case of the different libraries such as React-Query, Axios, Redux, Formik, React toolkit and more.
+It demonstrates the use case of the different libraries such as React-Query, Axios, Redux, Formik and more.
 
 The application is written by following the Coding Best Practices.
 
@@ -17,7 +17,6 @@ The application is written by following the Coding Best Practices.
 - Axios
 - React Query
 - Redux
-- Redux toolkit
 - Redux persist
 - MUI (offers a comprehensive suite of UI tools to help you ship new features faster)
 - Formik (building forms)
