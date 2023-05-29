@@ -2,7 +2,7 @@
 
 It is a learning project to showcase a Social Media Application. Frontend is developed in React.js and Backend is developed in Node.js. 
 
-It demonstrates the use case of the different libraries such as React-Query, Axios, Redux, Formik and more.
+It demonstrates the use case of the different libraries such as Redux, Formik and more.
 
 The application is written by following the Coding Best Practices.
 
