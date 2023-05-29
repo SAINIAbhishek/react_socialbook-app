@@ -1,4 +1,3 @@
-/*
 import { PersonAddOutlined, PersonRemoveOutlined } from '@mui/icons-material';
 import { Box, IconButton, Typography, useTheme } from '@mui/material';
 import { useDispatch, useSelector } from 'react-redux';
@@ -7,6 +6,8 @@ import { AppStateType } from '../../types/AppStateType';
 import { setFriends } from '../../states/AppState';
 import { FlexBetween } from '../../layouts/flex-between/FlexBetween';
 import UserImage from '../user-image/UserImage';
+
+// TODO:
 
 type Props = {
   friendId: string;
@@ -18,8 +19,9 @@ type Props = {
 const Friend = ({ friendId, name, subtitle, userPicturePath }: Props) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
   const { _id } = useSelector((state: AppStateType) => state.user);
-  const token = useSelector((state: AppStateType) => state.token);
+  const token = useSelector((state: AppStateType) => state.accessToken);
   const friends = useSelector((state: AppStateType) => state.user?.friends);
 
   const { palette }: any = useTheme();
@@ -85,4 +87,3 @@ const Friend = ({ friendId, name, subtitle, userPicturePath }: Props) => {
 };
 
 export default Friend;
-*/

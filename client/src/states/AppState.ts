@@ -1,6 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { AppStateType } from '../types/AppStateType';
-import { CONFIG } from '../config/Config';
 import { UserType } from '../types/UserType';
 
 const initialState: AppStateType = {
@@ -9,7 +8,7 @@ const initialState: AppStateType = {
   accessToken: '',
 };
 
-export const APP_STATE_SLICE = createSlice({
+export const appStateSlice = createSlice({
   name: 'APP_STATE',
   initialState,
   reducers: {
@@ -18,11 +17,11 @@ export const APP_STATE_SLICE = createSlice({
     },
     setLogin: (state, action) => {
       state.user = action.payload.user;
+      state.accessToken = action.payload.accessToken;
     },
     setLogout: (state) => {
       state.user = {} as UserType;
       state.accessToken = '';
-      sessionStorage.removeItem(CONFIG.ACCESS_TOKEN);
     },
     setFriends: (state, action) => {
       if (state.user) {
@@ -35,5 +34,6 @@ export const APP_STATE_SLICE = createSlice({
 });
 
 export const { setMode, setLogin, setLogout, setFriends } =
-  APP_STATE_SLICE.actions;
-export default APP_STATE_SLICE.reducer;
+  appStateSlice.actions;
+
+export default appStateSlice.reducer;

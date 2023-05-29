@@ -1,5 +1,3 @@
-/*
-import * as React from 'react';
 import {
   ChatBubbleOutlineOutlined,
   FavoriteBorderOutlined,
@@ -9,13 +7,13 @@ import {
 import { Box, Divider, IconButton, Typography, useTheme } from '@mui/material';
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { LIKE_POST } from '../../../apis/post/Post';
-import { setPost } from '../../../states/AppState';
 import { AppStateType } from '../../../types/AppStateType';
 import { FlexBetween } from '../../../layouts/flex-between/FlexBetween';
 import { WidgetWrapper } from '../../../layouts/widget-wrapper/WidgetWrapper';
-import Friend from '../../friend/Friend';
 import { PostType } from '../../../types/PostType';
+import Friend from '../../friend/Friend';
+
+// TODO
 
 type Props = {
   data: PostType;
@@ -35,12 +33,14 @@ const PostWidget = ({ data }: Props) => {
     comments,
   } = data;
 
-  const name = `${firstName} ${lastName}`;
-
   const [isComments, setIsComments] = useState(false);
+
   const dispatch = useDispatch();
-  const token = useSelector((state: AppStateType) => state.token);
-  const loggedInUserId = useSelector((state: AppStateType) => state.user._id);
+  const name = `${firstName} ${lastName}`;
+  const { user: loggedUser, accessToken } = useSelector(
+    (state: AppStateType) => state
+  );
+  const loggedInUserId = loggedUser._id;
   const isLiked = Boolean(likes[loggedInUserId]);
   const likeCount = Object.keys(likes).length;
 
@@ -48,9 +48,9 @@ const PostWidget = ({ data }: Props) => {
   const main = palette.neutral.main;
   const primary = palette.primary.main;
 
-  const patchLike = async () => {
-    const updatedPost = await LIKE_POST(loggedInUserId, _id, token);
-    dispatch(setPost({ post: updatedPost }));
+  const patchLike = () => {
+    /*const updatedPost = await LIKE_POST(loggedInUserId, _id, token);
+    dispatch(setPost({ post: updatedPost }));*/
   };
 
   return (
@@ -85,7 +85,6 @@ const PostWidget = ({ data }: Props) => {
             </IconButton>
             <Typography>{likeCount}</Typography>
           </FlexBetween>
-
           <FlexBetween gap="0.3rem">
             <IconButton onClick={() => setIsComments(!isComments)}>
               <ChatBubbleOutlineOutlined />
@@ -98,6 +97,7 @@ const PostWidget = ({ data }: Props) => {
           <ShareOutlined />
         </IconButton>
       </FlexBetween>
+
       {isComments && (
         <Box mt="0.5rem">
           {comments.map((comment, i) => (
@@ -116,4 +116,3 @@ const PostWidget = ({ data }: Props) => {
 };
 
 export default PostWidget;
-*/

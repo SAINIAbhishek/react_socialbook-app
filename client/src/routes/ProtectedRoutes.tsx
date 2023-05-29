@@ -3,7 +3,9 @@ import { Navigate, Outlet } from 'react-router-dom';
 import { AppStateType } from '../types/AppStateType';
 
 const ProtectedRoutes = () => {
-  const isAuth = Boolean(useSelector((state: AppStateType) => state.token));
+  const isAuth = Boolean(
+    useSelector((state: AppStateType) => state.accessToken)
+  );
   return isAuth ? <Outlet /> : <Navigate to="/login" />;
 };
 

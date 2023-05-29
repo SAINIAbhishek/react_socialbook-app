@@ -5,7 +5,6 @@ import { useMutation } from 'react-query';
 import { useDispatch } from 'react-redux';
 import { setLogin } from '../../states/AppState';
 import { useNavigate } from 'react-router-dom';
-import axios from '../../lib/AxiosInstance';
 
 const LoginPage = () => {
   const dispatch = useDispatch();
@@ -13,12 +12,10 @@ const LoginPage = () => {
 
   const { mutate, isError } = useMutation(SIGNED_IN, {
     onSuccess: (data) => {
-      const token = data.data.token;
-      axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
       dispatch(
         setLogin({
           user: data.data.user,
-          token: token,
+          accessToken: data.data.token,
         })
       );
       navigate('/home');

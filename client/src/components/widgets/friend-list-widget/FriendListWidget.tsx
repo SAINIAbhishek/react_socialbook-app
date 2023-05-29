@@ -1,7 +1,6 @@
-/*
 import * as React from 'react';
-import { Box, Typography, useTheme } from '@mui/material';
 import { useEffect } from 'react';
+import { Box, Typography, useTheme } from '@mui/material';
 import { useDispatch, useSelector } from 'react-redux';
 import { GET_FRIENDS } from '../../../apis/user/User';
 import { setFriends } from '../../../states/AppState';
@@ -53,4 +52,3 @@ const FriendListWidget = ({ userId }: Props) => {
 };
 
 export default FriendListWidget;
-*/

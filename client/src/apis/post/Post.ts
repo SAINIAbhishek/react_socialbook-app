@@ -1,5 +1,4 @@
 import axios from '../../lib/axios/AxiosInstance';
-import { CONFIG } from '../../config/Config';
 
 /*export async function CREATE_POST(userId: string, post: string, image: any) {
   const formData = new FormData();
@@ -38,10 +37,20 @@ export const CREATE_POST = (userId: string, post: string, image: any) => {
   }).then((response) => response.json());
 }*/
 
-export const LIKE_POST = (loggedInUserId: string, postId: string) => {
+export const LIKE_POST = (
+  loggedInUserId: string,
+  postId: string,
+  token: string
+) => {
   return axios.patch(
     `/posts/${postId}/like`,
-    JSON.stringify({ userId: loggedInUserId })
+    JSON.stringify({ userId: loggedInUserId }),
+    {
+      headers: {
+        Authorization: `Bearer ${token}`,
+        'Content-Type': 'application/json',
+      },
+    }
   );
 };
 
@@ -52,10 +61,10 @@ export const LIKE_POST = (loggedInUserId: string, postId: string) => {
   }).then((response) => response.json());
 }*/
 
-export const GET_POSTS = () => {
+export const GET_POSTS = (token: string) => {
   return axios.get('/posts', {
     headers: {
-      Authorization: sessionStorage.getItem(CONFIG.ACCESS_TOKEN),
+      Authorization: `Bearer ${token}`,
     },
   });
 };

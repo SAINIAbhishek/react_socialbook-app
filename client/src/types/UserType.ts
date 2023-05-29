@@ -6,4 +6,6 @@ export type UserType = {
   picturePath: string;
   occupation: string;
   impressions: number;
+  viewedProfile?: number;
+  location?: string;
 };
