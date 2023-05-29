@@ -1,4 +1,4 @@
-import { UserType } from './UserType';
+import { UserType } from './user.type';
 
 export type AppStateType = {
   mode: string;
