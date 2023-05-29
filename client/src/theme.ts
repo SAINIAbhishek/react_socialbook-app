@@ -1,5 +1,5 @@
 // color design tokens export
-export const COLOR_TOKENS = {
+export const colorTokens = {
   grey: {
     0: '#FFFFFF',
     10: '#F6F6F6',
@@ -30,7 +30,7 @@ export const COLOR_TOKENS = {
 };
 
 // mui theme settings
-export const THEME_SETTINGS = (mode: string): any => {
+export const themeSettings = (mode: string): any => {
   return {
     palette: {
       mode: mode,
@@ -38,39 +38,39 @@ export const THEME_SETTINGS = (mode: string): any => {
         ? {
             // palette values for dark mode
             primary: {
-              dark: COLOR_TOKENS.primary[200],
-              main: COLOR_TOKENS.primary[500],
-              light: COLOR_TOKENS.primary[800],
+              dark: colorTokens.primary[200],
+              main: colorTokens.primary[500],
+              light: colorTokens.primary[800],
             },
             neutral: {
-              dark: COLOR_TOKENS.grey[100],
-              main: COLOR_TOKENS.grey[200],
-              mediumMain: COLOR_TOKENS.grey[300],
-              medium: COLOR_TOKENS.grey[400],
-              light: COLOR_TOKENS.grey[700],
+              dark: colorTokens.grey[100],
+              main: colorTokens.grey[200],
+              mediumMain: colorTokens.grey[300],
+              medium: colorTokens.grey[400],
+              light: colorTokens.grey[700],
             },
             background: {
-              default: COLOR_TOKENS.grey[900],
-              alt: COLOR_TOKENS.grey[800],
+              default: colorTokens.grey[900],
+              alt: colorTokens.grey[800],
             },
           }
         : {
             // palette values for light mode
             primary: {
-              dark: COLOR_TOKENS.primary[700],
-              main: COLOR_TOKENS.primary[500],
-              light: COLOR_TOKENS.primary[50],
+              dark: colorTokens.primary[700],
+              main: colorTokens.primary[500],
+              light: colorTokens.primary[50],
             },
             neutral: {
-              dark: COLOR_TOKENS.grey[700],
-              main: COLOR_TOKENS.grey[500],
-              mediumMain: COLOR_TOKENS.grey[400],
-              medium: COLOR_TOKENS.grey[300],
-              light: COLOR_TOKENS.grey[50],
+              dark: colorTokens.grey[700],
+              main: colorTokens.grey[500],
+              mediumMain: colorTokens.grey[400],
+              medium: colorTokens.grey[300],
+              light: colorTokens.grey[50],
             },
             background: {
-              default: COLOR_TOKENS.grey[10],
-              alt: COLOR_TOKENS.grey[0],
+              default: colorTokens.grey[10],
+              alt: colorTokens.grey[0],
             },
           }),
     },

@@ -5,11 +5,12 @@ import { UserType } from '../types/user.type';
 const initialState: AppStateType = {
   mode: 'light',
   user: {} as UserType,
-  accessToken: '',
+  token: '',
+  posts: [],
 };
 
-export const appStateSlice = createSlice({
-  name: 'APP_STATE',
+export const authSlice = createSlice({
+  name: 'auth',
   initialState,
   reducers: {
     setMode: (state) => {
@@ -17,11 +18,11 @@ export const appStateSlice = createSlice({
     },
     setLogin: (state, action) => {
       state.user = action.payload.user;
-      state.accessToken = action.payload.accessToken;
+      state.token = action.payload.token;
     },
     setLogout: (state) => {
       state.user = {} as UserType;
-      state.accessToken = '';
+      state.token = '';
     },
     setFriends: (state, action) => {
       if (state.user) {
@@ -30,10 +31,18 @@ export const appStateSlice = createSlice({
         console.error('user friends non-existent :(');
       }
     },
+    setPosts: (state, action) => {
+      state.posts = action.payload.posts;
+    },
+    setPost: (state, action) => {
+      state.posts = state.posts.map((post) => {
+        if (post._id === action.payload.post._id) return action.payload.post;
+        return post;
+      });
+    },
   },
 });
 
-export const { setMode, setLogin, setLogout, setFriends } =
-  appStateSlice.actions;
-
-export default appStateSlice.reducer;
+export const { setMode, setLogin, setLogout, setFriends, setPosts, setPost } =
+  authSlice.actions;
+export default authSlice.reducer;

@@ -1,7 +1,6 @@
 {
   "root": true,
   "plugins": ["react-hooks", "check-file", "@typescript-eslint", "react"],
-  "ignorePatterns": ["**/index.tsx"],
   "rules": {
     "no-use-before-define": "off",
     "semi": ["error", "always"],
@@ -17,20 +16,7 @@
       }
     ],
     "react-hooks/rules-of-hooks": "error",
-    "react-hooks/exhaustive-deps": "warn",
-    "check-file/filename-naming-convention": [
-      "error",
-      {
-        "**/*.{ts,tsx}": "KEBAB_CASE"
-      }
-    ],
-    "check-file/folder-naming-convention": [
-      "error",
-      {
-        "src/**/": "KEBAB_CASE",
-        "mocks/*/": "KEBAB_CASE"
-      }
-    ]
+    "react-hooks/exhaustive-deps": "warn"
   },
   "extends": [
     "plugin:react/recommended", // Uses the recommended rules from @eslint-plugin-react
