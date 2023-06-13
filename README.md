@@ -18,6 +18,7 @@ The application is written by following the Coding Best Practices.
 - React Query
 - Redux
 - Redux persist
+- Redux Toolkit
 - MUI (offers a comprehensive suite of UI tools to help you ship new features faster)
 - Formik (building forms)
 - yup (a schema builder for runtime value parsing and validation)
