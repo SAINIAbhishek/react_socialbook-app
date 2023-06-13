@@ -7,12 +7,12 @@ import {
 } from '@mui/icons-material';
 import { Box, Divider, IconButton, Typography, useTheme } from '@mui/material';
 import { useDispatch, useSelector } from 'react-redux';
-import { LIKE_POST } from '../../../apis/post.api';
+import { LIKE_POST } from '../../../apis/PostApi';
 import WidgetWrapper from '../../widget-wrapper';
 import Friend from '../../friend';
 import FlexBetween from '../../flex-between';
-import { AppStateType } from '../../../types/app-state.type';
-import { setPost } from '../../../states/app-state';
+import { StateType } from '../../../state/StateType';
+import { setPost } from '../../../state';
 
 const PostWidget = ({
   postId,
@@ -27,8 +27,8 @@ const PostWidget = ({
 }) => {
   const [isComments, setIsComments] = useState(false);
   const dispatch = useDispatch();
-  const token = useSelector((state: AppStateType) => state.token);
-  const loggedInUserId = useSelector((state: AppStateType) => state.user._id);
+  const token = useSelector((state: StateType) => state.token);
+  const loggedInUserId = useSelector((state: StateType) => state.user._id);
   const isLiked = Boolean(likes[loggedInUserId]);
   const likeCount = Object.keys(likes).length;
 

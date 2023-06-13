@@ -24,14 +24,14 @@ import {
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import FlexBetween from '../flex-between';
-import { setLogout, setMode } from '../../states/app-state';
-import { AppStateType } from '../../types/app-state.type';
+import { setLogout, setMode } from '../../state';
+import { StateType } from '../../state/StateType';
 
 const Navbar = () => {
   const [isMobileMenuToggled, setIsMobileMenuToggled] = useState(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const user = useSelector((state: AppStateType) => state.user);
+  const user = useSelector((state: StateType) => state.user);
   const isNonMobileScreens = useMediaQuery('(min-width: 1000px)');
 
   const theme: any = useTheme();

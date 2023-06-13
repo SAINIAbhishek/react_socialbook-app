@@ -13,9 +13,9 @@ import * as yup from 'yup';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import Dropzone from 'react-dropzone';
-import { LOGGED_IN, REGISTER } from '../../apis/auth.api';
+import { LOGGED_IN, REGISTER } from '../../apis/AuthApi';
 import FlexBetween from '../../components/flex-between';
-import { setLogin } from 'src/states/app-state';
+import { setLogin } from 'src/state';
 
 const registerSchema = yup.object().shape({
   firstName: yup.string().required('required'),

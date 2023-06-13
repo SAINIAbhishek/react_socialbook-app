@@ -1,15 +1,15 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { AppStateType } from '../types/app-state.type';
-import { UserType } from '../types/user.type';
+import { StateType } from './StateType';
+import { UserType } from '../types/UserType';
 
-const initialState: AppStateType = {
+const initialState: StateType = {
   mode: 'light',
   user: {} as UserType,
   token: '',
   posts: [],
 };
 
-export const authSlice = createSlice({
+const authSlice = createSlice({
   name: 'auth',
   initialState,
   reducers: {
@@ -45,4 +45,5 @@ export const authSlice = createSlice({
 
 export const { setMode, setLogin, setLogout, setFriends, setPosts, setPost } =
   authSlice.actions;
+
 export default authSlice.reducer;

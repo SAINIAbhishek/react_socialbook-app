@@ -1,15 +1,15 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import PostWidget from '../post-widget';
-import { GET_POSTS } from '../../../apis/post.api';
-import { GET_USER_POSTS } from '../../../apis/user.api';
-import { AppStateType } from '../../../types/app-state.type';
-import { setPosts } from '../../../states/app-state';
+import { GET_POSTS } from '../../../apis/PostApi';
+import { GET_USER_POSTS } from '../../../apis/UserApi';
+import { StateType } from '../../../state/StateType';
+import { setPosts } from '../../../state';
 
 const PostsWidget = ({ userId, isProfile = false }) => {
   const dispatch = useDispatch();
-  const posts = useSelector((state: AppStateType) => state.posts);
-  const token = useSelector((state: AppStateType) => state.token);
+  const posts = useSelector((state: StateType) => state.posts);
+  const token = useSelector((state: StateType) => state.token);
 
   const getPosts = async () => {
     const data = await GET_POSTS(token);

@@ -1,4 +1,4 @@
-import { BASE_API_URL } from './base.api';
+import { BASE_API_URL } from './BaseApi';
 
 export async function CREATE_POST(
   userId: string,

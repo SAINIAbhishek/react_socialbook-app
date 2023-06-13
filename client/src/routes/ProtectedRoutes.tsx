@@ -1,9 +1,9 @@
 import { useSelector } from 'react-redux';
 import { Navigate, Outlet } from 'react-router-dom';
-import { AppStateType } from '../types/app-state.type';
+import { StateType } from '../state/StateType';
 
 const ProtectedRoutes = () => {
-  const isAuth = Boolean(useSelector((state: AppStateType) => state.token));
+  const isAuth = Boolean(useSelector((state: StateType) => state.token));
   return isAuth ? <Outlet /> : <Navigate to="/login" />;
 };
 

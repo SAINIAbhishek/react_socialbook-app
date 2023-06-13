@@ -9,17 +9,17 @@ import {
 import { Box, Divider, Typography, useTheme } from '@mui/material';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { GET_USER } from '../../../apis/user.api';
+import { GET_USER } from '../../../apis/UserApi';
 import WidgetWrapper from '../../widget-wrapper';
 import FlexBetween from '../../flex-between';
 import UserImage from '../../user-image';
-import { AppStateType } from '../../../types/app-state.type';
+import { StateType } from '../../../state/StateType';
 
 const UserWidget = ({ userId, picturePath }) => {
   const [user, setUser] = useState({} as any);
   const { palette }: any = useTheme();
   const navigate = useNavigate();
-  const token = useSelector((state: AppStateType) => state.token);
+  const token = useSelector((state: StateType) => state.token);
   const dark = palette.neutral.dark;
   const medium = palette.neutral.medium;
   const main = palette.neutral.main;

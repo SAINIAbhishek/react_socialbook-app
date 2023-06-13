@@ -3,16 +3,16 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { CssBaseline, ThemeProvider } from '@mui/material';
 import { createTheme } from '@mui/material/styles';
-import { AppStateType } from './types/app-state.type';
+import { StateType } from './state/StateType';
 import { themeSettings } from './theme';
-import ProtectedRoutes from './routes/protected.routes';
+import ProtectedRoutes from './routes/ProtectedRoutes';
 import HomePage from './pages/home-page';
 import ProfilePage from './pages/profile-page';
-import PublicRoutes from './routes/public.routes';
+import PublicRoutes from './routes/PublicRoutes';
 import LoginPage from './pages/login-page';
 
 function App() {
-  const mode = useSelector((state: AppStateType) => state.mode);
+  const mode = useSelector((state: StateType) => state.mode);
   const theme = useMemo(() => createTheme(themeSettings(mode)), [mode]);
 
   return (

@@ -4,8 +4,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import FlexBetween from '../flex-between';
 import UserImage from '../user-image';
-import { AppStateType } from '../../types/app-state.type';
-import { setFriends } from '../../states/app-state';
+import { StateType } from '../../state/StateType';
+import { setFriends } from '../../state';
 
 type Props = {
   friendId: string;
@@ -17,9 +17,9 @@ type Props = {
 const Friend = ({ friendId, name, subtitle, userPicturePath }: Props) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { _id } = useSelector((state: AppStateType) => state.user);
-  const token = useSelector((state: AppStateType) => state.token);
-  const friends = useSelector((state: AppStateType) => state.user?.friends);
+  const { _id } = useSelector((state: StateType) => state.user);
+  const token = useSelector((state: StateType) => state.token);
+  const friends = useSelector((state: StateType) => state.user?.friends);
 
   const { palette }: any = useTheme();
   const primaryLight = palette.primary.light;

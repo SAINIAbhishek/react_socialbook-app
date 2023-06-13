@@ -7,11 +7,11 @@ import AdvertWidget from '../../components/widgets/advert-widget';
 import FriendListWidget from '../../components/widgets/friend-list-widget';
 import MyPostWidget from '../../components/widgets/my-post-widget';
 import Navbar from '../../components/navbar';
-import { AppStateType } from '../../types/app-state.type';
+import { StateType } from '../../state/StateType';
 
 const HomePage = () => {
   const isNonMobileScreens = useMediaQuery('(min-width:1000px)');
-  const { _id, picturePath } = useSelector((state: AppStateType) => state.user);
+  const { _id, picturePath } = useSelector((state: StateType) => state.user);
 
   return (
     <Box>

@@ -21,12 +21,12 @@ import {
 } from '@mui/material';
 import Dropzone from 'react-dropzone';
 import { useDispatch, useSelector } from 'react-redux';
-import { CREATE_POST } from '../../../apis/post.api';
+import { CREATE_POST } from '../../../apis/PostApi';
 import WidgetWrapper from '../../widget-wrapper';
 import FlexBetween from '../../flex-between';
 import UserImage from '../../user-image';
-import { AppStateType } from '../../../types/app-state.type';
-import { setPosts } from '../../../states/app-state';
+import { StateType } from '../../../state/StateType';
+import { setPosts } from '../../../state';
 
 const MyPostWidget = ({ picturePath }) => {
   const dispatch = useDispatch();
@@ -34,8 +34,8 @@ const MyPostWidget = ({ picturePath }) => {
   const [image, setImage] = useState({} as any);
   const [post, setPost] = useState('');
   const { palette }: any = useTheme();
-  const { _id } = useSelector((state: AppStateType) => state.user);
-  const token = useSelector((state: AppStateType) => state.token);
+  const { _id } = useSelector((state: StateType) => state.user);
+  const token = useSelector((state: StateType) => state.token);
   const isNonMobileScreens = useMediaQuery('(min-width: 1000px)');
   const mediumMain = palette.neutral.mediumMain;
   const medium = palette.neutral.medium;

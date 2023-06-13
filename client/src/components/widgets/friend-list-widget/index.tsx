@@ -2,17 +2,17 @@ import * as React from 'react';
 import { useEffect } from 'react';
 import { Box, Typography, useTheme } from '@mui/material';
 import { useDispatch, useSelector } from 'react-redux';
-import { GET_FRIENDS } from '../../../apis/user.api';
+import { GET_FRIENDS } from '../../../apis/UserApi';
 import WidgetWrapper from '../../widget-wrapper';
 import Friend from '../../friend';
-import { AppStateType } from '../../../types/app-state.type';
-import { setFriends } from '../../../states/app-state';
+import { StateType } from '../../../state/StateType';
+import { setFriends } from '../../../state';
 
 const FriendListWidget = ({ userId }) => {
   const dispatch = useDispatch();
   const { palette }: any = useTheme();
-  const token = useSelector((state: AppStateType) => state.token);
-  const friends = useSelector((state: AppStateType) => state.user.friends);
+  const token = useSelector((state: StateType) => state.token);
+  const friends = useSelector((state: StateType) => state.user.friends);
 
   const getFriends = async () => {
     const data = await GET_FRIENDS(userId, token);

@@ -1,4 +1,4 @@
-import { BASE_API_URL } from './base.api';
+import { BASE_API_URL } from './BaseApi';
 
 export async function GET_FRIENDS(userId: string, token: string) {
   return await fetch(`${BASE_API_URL}users/${userId}/friends`, {
