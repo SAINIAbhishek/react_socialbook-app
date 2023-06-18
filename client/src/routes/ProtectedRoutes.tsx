@@ -1,5 +1,5 @@
-import {Navigate, Outlet} from 'react-router-dom';
-import {useAppSelector} from "../app/StoreHooks";
+import { Navigate, Outlet } from 'react-router-dom';
+import { useAppSelector } from '../app/StoreHooks';
 
 const ProtectedRoutes = () => {
   const isAuthenticated = Boolean(
