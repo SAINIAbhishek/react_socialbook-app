@@ -1,10 +1,11 @@
-import { useSelector } from 'react-redux';
-import { Navigate, Outlet } from 'react-router-dom';
-import { StateType } from '../state/StateType';
+import {Navigate, Outlet} from 'react-router-dom';
+import {useAppSelector} from "../app/StoreHooks";
 
 const ProtectedRoutes = () => {
-  const isAuth = Boolean(useSelector((state: StateType) => state.token));
-  return isAuth ? <Outlet /> : <Navigate to="/login" />;
+  const isAuthenticated = Boolean(
+    useAppSelector((state) => state.isAuthenticated)
+  );
+  return isAuthenticated ? <Outlet /> : <Navigate to="/login" />;
 };
 
 export default ProtectedRoutes;
