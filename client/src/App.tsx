@@ -1,18 +1,17 @@
 import { useMemo } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import { useSelector } from 'react-redux';
 import { CssBaseline, ThemeProvider } from '@mui/material';
 import { createTheme } from '@mui/material/styles';
-import { StateType } from './state/StateType';
 import { themeSettings } from './theme';
 import ProtectedRoutes from './routes/ProtectedRoutes';
 import HomePage from './pages/home-page';
 import ProfilePage from './pages/profile-page';
 import PublicRoutes from './routes/PublicRoutes';
 import LoginPage from './pages/login-page';
+import { useAppSelector } from './app/StoreHooks';
 
 function App() {
-  const mode = useSelector((state: StateType) => state.mode);
+  const mode = useAppSelector((state) => state.mode);
   const theme = useMemo(() => createTheme(themeSettings(mode)), [mode]);
 
   return (
