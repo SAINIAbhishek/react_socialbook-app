@@ -1,18 +1,18 @@
-import { useMemo } from 'react';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import { CssBaseline, ThemeProvider } from '@mui/material';
-import { createTheme } from '@mui/material/styles';
-import { themeSettings } from './theme';
+import {useMemo} from 'react';
+import {BrowserRouter, Route, Routes} from 'react-router-dom';
+import {CssBaseline, ThemeProvider} from '@mui/material';
+import {createTheme} from '@mui/material/styles';
+import {THEME_SETTINGS} from './Theme';
 import ProtectedRoutes from './routes/ProtectedRoutes';
 import HomePage from './pages/home-page';
 import ProfilePage from './pages/profile-page';
 import PublicRoutes from './routes/PublicRoutes';
 import LoginPage from './pages/login-page';
-import { useAppSelector } from './app/StoreHooks';
+import {useAppSelector} from './app/StoreHooks';
 
 function App() {
   const mode = useAppSelector((state) => state.mode);
-  const theme = useMemo(() => createTheme(themeSettings(mode)), [mode]);
+  const theme = useMemo(() => createTheme(THEME_SETTINGS(mode)), [mode]);
 
   return (
     <div className="app">
