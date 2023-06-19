@@ -1,43 +1,45 @@
-import { useCallback, useEffect, useState } from 'react';
-import { useAppSelector } from '../../../app/StoreHooks';
+import { useCallback, useEffect } from 'react';
+import { useAppDispatch, useAppSelector } from '../../../app/StoreHooks';
 import { PostType } from '../../../types/PostType';
 import { GET_USER_POSTS } from '../../../apis/UserApi';
 import { GET_POSTS } from '../../../apis/PostApi';
+import PostWidget from '../post-widget/PostWidget';
+import { setPosts } from '../../../slices/AuthSlice';
 
 type Props = {
   isAuthUserProfile?: boolean;
+  userId: string;
 };
 
-const PostsWidget = ({ isAuthUserProfile = false }: Props) => {
-  const [posts, setPosts] = useState<PostType[]>([]);
-  const state = useAppSelector((state) => state);
-  const { authUser } = state;
+const PostsWidget = ({ userId, isAuthUserProfile = false }: Props) => {
+  const dispatch = useAppDispatch();
+  const posts = useAppSelector((state) => state.posts);
 
   const fetchPosts = useCallback(async () => {
-    let fetchedPosts: PostType[] = [];
+    let fetchedPosts: PostType[];
 
-    if (authUser?._id) {
-      if (isAuthUserProfile) {
-        fetchedPosts = await GET_USER_POSTS(authUser?._id);
-      } else {
-        fetchedPosts = await GET_POSTS();
-      }
+    if (isAuthUserProfile) {
+      fetchedPosts = await GET_USER_POSTS(userId);
+    } else {
+      fetchedPosts = await GET_POSTS();
     }
 
-    setPosts(fetchedPosts);
-  }, [isAuthUserProfile, authUser]);
+    dispatch(
+      setPosts({
+        posts: fetchedPosts,
+      })
+    );
+  }, [isAuthUserProfile, userId]);
 
   useEffect(() => {
-    fetchPosts();
+    fetchPosts().then();
   }, [fetchPosts]);
 
   return (
     <>
-      K
       {posts.map((post) => (
-        <>Post Widget</>
+        <PostWidget key={post._id} post={post} />
       ))}
-      K
     </>
   );
 };

@@ -8,6 +8,7 @@ import PublicRoutes from './routes/PublicRoutes';
 import { useAppSelector } from './app/StoreHooks';
 import LoginPage from './pages/login-page/LoginPage';
 import RegisterPage from './pages/register-page/RegisterPage';
+import HomePage from './pages/home-page/HomePage';
 
 function App() {
   const mode = useAppSelector((state) => state.mode);
@@ -19,7 +20,9 @@ function App() {
         <ThemeProvider theme={theme}>
           <CssBaseline />
           <Routes>
-            <Route element={<ProtectedRoutes />}></Route>
+            <Route element={<ProtectedRoutes />}>
+              <Route path="/home" element={<HomePage />} />
+            </Route>
             <Route element={<PublicRoutes />}>
               <Route path="/login" element={<LoginPage />} />
               <Route path="/register" element={<RegisterPage />} />

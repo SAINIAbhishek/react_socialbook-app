@@ -24,13 +24,13 @@ import { useNavigate } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../app/StoreHooks';
 import { CONFIG } from '../../config/Config';
 import FlexBetween from '../flex-between/FlexBetween';
-import { setLogout, setMode } from '../../slices/AuthSlice';
+import { setLogout, setThemeMode } from '../../slices/AuthSlice';
 
 const Navbar = () => {
   const [isMobileMenuToggled, setIsMobileMenuToggled] = useState(false);
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
-  const authUser = useAppSelector((state) => state.authUser);
+  const user = useAppSelector((state) => state.user);
   const isNonMobileScreens = useMediaQuery(CONFIG.IS_NON_MOBILE_SCREENS_WIDTH);
 
   const theme: any = useTheme();
@@ -40,7 +40,7 @@ const Navbar = () => {
   const primaryLight = theme.palette.primary.light;
   const alt = theme.palette.background.alt;
 
-  const fullName = `${authUser?.firstName} ${authUser?.lastName}`;
+  const fullName = `${user?.firstName} ${user?.lastName}`;
 
   return (
     <FlexBetween padding="1rem 6%" sx={{ backgroundColor: alt }}>
@@ -76,7 +76,7 @@ const Navbar = () => {
       {/* DESKTOP NAV */}
       {isNonMobileScreens ? (
         <FlexBetween gap="2rem">
-          <IconButton onClick={() => dispatch(setMode())}>
+          <IconButton onClick={() => dispatch(setThemeMode())}>
             {theme.palette.mode === 'dark' ? (
               <DarkMode sx={{ fontSize: '25px' }} />
             ) : (
@@ -146,7 +146,7 @@ const Navbar = () => {
             alignItems="center"
             gap="3rem">
             <IconButton
-              onClick={() => dispatch(setMode())}
+              onClick={() => dispatch(setThemeMode())}
               sx={{ fontSize: '25px' }}>
               {theme.palette.mode === 'dark' ? (
                 <DarkMode sx={{ fontSize: '25px' }} />
