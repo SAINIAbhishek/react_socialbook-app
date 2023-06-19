@@ -13,6 +13,8 @@ import { Formik } from 'formik';
 import { LOGGED_IN } from '../../apis/AuthApi';
 import { useAppDispatch } from '../../app/StoreHooks';
 import { setLogin } from '../../slices/AuthSlice';
+import { CONFIG } from '../../config/Config';
+import { Cookies } from 'react-cookie';
 
 const validationSchema = yup.object().shape({
   email: yup.string().email('invalid email').required('required'),
@@ -24,6 +26,8 @@ const initialValues: UserBasicType = {
   password: '',
 };
 
+const cookies = new Cookies();
+
 const LoginForm = () => {
   const { palette } = useTheme();
   const navigate = useNavigate();
@@ -34,11 +38,14 @@ const LoginForm = () => {
     const loggedIn = await LOGGED_IN(values);
 
     if (!!loggedIn) {
+      cookies.set(CONFIG.ACCESS_TOKEN, loggedIn.token, { path: '/' });
+
       dispatch(
         setLogin({
           user: loggedIn.user,
         })
       );
+
       navigate('/home');
     }
   };

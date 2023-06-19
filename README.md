@@ -14,11 +14,10 @@ The application is written by following the Coding Best Practices.
 
 ### Frontend Stacks:
 - React.js
-- Axios
-- React Query
 - Redux
 - Redux persist
 - Redux Toolkit
+- React Cookie
 - MUI (offers a comprehensive suite of UI tools to help you ship new features faster)
 - Formik (building forms)
 - yup (a schema builder for runtime value parsing and validation)
