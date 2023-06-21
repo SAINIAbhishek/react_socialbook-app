@@ -29,7 +29,7 @@ const PostsWidget = ({ userId, isAuthUserProfile = false }: Props) => {
         posts: fetchedPosts,
       })
     );
-  }, [isAuthUserProfile, userId]);
+  }, [dispatch, isAuthUserProfile, userId]);
 
   useEffect(() => {
     fetchPosts().then();

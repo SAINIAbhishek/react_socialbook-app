@@ -4,6 +4,7 @@ import AdvertWidget from '../../components/widgets/advert-widget/AdvertWidget';
 import Navbar from '../../components/navbar/Navbar';
 import PostsWidget from '../../components/widgets/posts-widget/PostsWidget';
 import { useAppSelector } from '../../app/StoreHooks';
+import UserWidget from '../../components/widgets/user-widget/UserWidget';
 
 const HomePage = () => {
   const isNonMobileScreens = useMediaQuery(CONFIG.IS_NON_MOBILE_SCREENS_WIDTH);
@@ -18,11 +19,13 @@ const HomePage = () => {
         display={isNonMobileScreens ? 'flex' : 'block'}
         gap="0.5rem"
         justifyContent="space-between">
-        <Box flexBasis={isNonMobileScreens ? '26%' : undefined}></Box>
+        <Box flexBasis={isNonMobileScreens ? '26%' : undefined}>
+          {!!user && <UserWidget user={user} />}
+        </Box>
         <Box
           flexBasis={isNonMobileScreens ? '42%' : undefined}
           mt={isNonMobileScreens ? undefined : '2rem'}>
-          {user?._id && <PostsWidget userId={user._id} />}
+          {!!user && <PostsWidget userId={user._id} />}
         </Box>
         {isNonMobileScreens && (
           <Box flexBasis="26%">
