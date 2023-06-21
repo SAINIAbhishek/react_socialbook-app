@@ -32,7 +32,7 @@ const HomePage = () => {
           <Box flexBasis="26%">
             <AdvertWidget />
             <Box m="2rem 0" />
-            {!!user && <FriendsListWidget friends={user.friends} />}
+            {!!user && <FriendsListWidget userId={user._id} />}
           </Box>
         )}
       </Box>

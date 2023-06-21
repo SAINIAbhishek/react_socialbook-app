@@ -8,7 +8,9 @@ export async function GET_USER_FRIENDS(userId: string) {
   return await fetch(`${CONFIG.BASE_API_URL}users/${userId}/friends`, {
     method: 'GET',
     headers: { Authorization: `Bearer ${token}` },
-  }).then((response) => response.json());
+  })
+    .then((response) => response.json())
+    .catch((err) => console.error(err));
 }
 
 export async function GET_USER(userId: string) {
