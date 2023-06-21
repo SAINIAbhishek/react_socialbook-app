@@ -5,6 +5,7 @@ import Navbar from '../../components/navbar/Navbar';
 import PostsWidget from '../../components/widgets/posts-widget/PostsWidget';
 import { useAppSelector } from '../../app/StoreHooks';
 import UserWidget from '../../components/widgets/user-widget/UserWidget';
+import FriendsListWidget from '../../components/widgets/friends-list-widget/FriendsListWidget';
 
 const HomePage = () => {
   const isNonMobileScreens = useMediaQuery(CONFIG.IS_NON_MOBILE_SCREENS_WIDTH);
@@ -31,6 +32,7 @@ const HomePage = () => {
           <Box flexBasis="26%">
             <AdvertWidget />
             <Box m="2rem 0" />
+            {!!user && <FriendsListWidget friends={user.friends} />}
           </Box>
         )}
       </Box>

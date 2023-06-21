@@ -4,6 +4,13 @@ import { Cookies } from 'react-cookie';
 const cookies = new Cookies();
 const token = cookies.get(CONFIG.ACCESS_TOKEN);
 
+export async function GET_USER_FRIENDS(userId: string) {
+  return await fetch(`${CONFIG.BASE_API_URL}users/${userId}/friends`, {
+    method: 'GET',
+    headers: { Authorization: `Bearer ${token}` },
+  }).then((response) => response.json());
+}
+
 export async function GET_USER(userId: string) {
   return await fetch(`${CONFIG.BASE_API_URL}users/${userId}`, {
     method: 'GET',
@@ -14,7 +21,7 @@ export async function GET_USER(userId: string) {
 }
 
 export async function PATCH_USER_FRIEND(userId: string, friendId: string) {
-  return await fetch(`${CONFIG.BASE_API_URL}/users/${userId}/${friendId}`, {
+  return await fetch(`${CONFIG.BASE_API_URL}users/${userId}/${friendId}`, {
     method: 'PATCH',
     headers: {
       Authorization: `Bearer ${token}`,
