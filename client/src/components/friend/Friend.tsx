@@ -20,6 +20,7 @@ const Friend = ({ friendId, name, subtitle, userPicturePath }: Props) => {
 
   const user = useAppSelector((state) => state?.user);
   const isFriend = user?.friends?.find((friend) => friend._id === friendId);
+  const showAddFriendIcon = (user && user._id !== friendId) ?? true;
 
   const { palette }: any = useTheme();
   const primaryLight = palette.primary.light;
@@ -64,15 +65,17 @@ const Friend = ({ friendId, name, subtitle, userPicturePath }: Props) => {
           </Typography>
         </Box>
       </FlexBetween>
-      <IconButton
-        onClick={handleFriend}
-        sx={{ backgroundColor: primaryLight, p: '0.6rem' }}>
-        {isFriend ? (
-          <PersonRemoveOutlined sx={{ color: primaryDark }} />
-        ) : (
-          <PersonAddOutlined sx={{ color: primaryDark }} />
-        )}
-      </IconButton>
+      {showAddFriendIcon && (
+        <IconButton
+          onClick={handleFriend}
+          sx={{ backgroundColor: primaryLight, p: '0.6rem' }}>
+          {isFriend ? (
+            <PersonRemoveOutlined sx={{ color: primaryDark }} />
+          ) : (
+            <PersonAddOutlined sx={{ color: primaryDark }} />
+          )}
+        </IconButton>
+      )}
     </FlexBetween>
   );
 };

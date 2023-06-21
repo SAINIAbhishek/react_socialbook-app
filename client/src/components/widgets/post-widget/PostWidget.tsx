@@ -36,6 +36,8 @@ const PostWidget = ({ post }: Props) => {
     userId,
   } = post;
 
+  console.log(post);
+
   const isLiked = Boolean(likes[loggedInUserId]);
   const likeCount = Object.keys(likes).length;
 
@@ -65,7 +67,7 @@ const PostWidget = ({ post }: Props) => {
       <Typography color={main} sx={{ mt: '1rem' }}>
         {description}
       </Typography>
-      {picturePath && (
+      {picturePath && picturePath !== 'undefined' && (
         <img
           width="100%"
           height="auto"

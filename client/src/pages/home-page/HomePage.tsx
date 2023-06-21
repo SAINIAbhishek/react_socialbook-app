@@ -6,6 +6,7 @@ import PostsWidget from '../../components/widgets/posts-widget/PostsWidget';
 import { useAppSelector } from '../../app/StoreHooks';
 import UserWidget from '../../components/widgets/user-widget/UserWidget';
 import FriendsListWidget from '../../components/widgets/friends-list-widget/FriendsListWidget';
+import MyPostWidget from '../../components/widgets/my-post-widget/MyPostWidget';
 
 const HomePage = () => {
   const isNonMobileScreens = useMediaQuery(CONFIG.IS_NON_MOBILE_SCREENS_WIDTH);
@@ -26,6 +27,7 @@ const HomePage = () => {
         <Box
           flexBasis={isNonMobileScreens ? '42%' : undefined}
           mt={isNonMobileScreens ? undefined : '2rem'}>
+          <MyPostWidget />
           {!!user && <PostsWidget userId={user._id} />}
         </Box>
         {isNonMobileScreens && (
