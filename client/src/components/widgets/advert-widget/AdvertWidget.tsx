@@ -1,7 +1,6 @@
-import * as React from 'react';
 import { Typography, useTheme } from '@mui/material';
-import WidgetWrapper from '../../widget-wrapper';
-import FlexBetween from '../../flex-between';
+import FlexBetween from '../../flex-between/FlexBetween';
+import WidgetWrapper from '../widget-wrapper/WidgetWrapper';
 
 const AdvertWidget = () => {
   const { palette }: any = useTheme();

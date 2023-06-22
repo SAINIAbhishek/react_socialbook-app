@@ -1,5 +1,3 @@
-import * as React from 'react';
-import { useEffect, useState } from 'react';
 import {
   EditOutlined,
   LocationOnOutlined,
@@ -7,31 +5,23 @@ import {
   WorkOutlineOutlined,
 } from '@mui/icons-material';
 import { Box, Divider, Typography, useTheme } from '@mui/material';
-import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { GET_USER } from '../../../apis/UserApi';
-import WidgetWrapper from '../../widget-wrapper';
-import FlexBetween from '../../flex-between';
-import UserImage from '../../user-image';
-import { StateType } from '../../../state/StateType';
+import { UserType } from '../../../types/UserType';
+import WidgetWrapper from '../widget-wrapper/WidgetWrapper';
+import FlexBetween from '../../flex-between/FlexBetween';
+import UserImage from '../../user-image/UserImage';
 
-const UserWidget = ({ userId, picturePath }) => {
-  const [user, setUser] = useState({} as any);
-  const { palette }: any = useTheme();
+type Props = {
+  user: UserType;
+};
+
+const UserWidget = ({ user }: Props) => {
   const navigate = useNavigate();
-  const token = useSelector((state: StateType) => state.token);
+
+  const { palette }: any = useTheme();
   const dark = palette.neutral.dark;
   const medium = palette.neutral.medium;
   const main = palette.neutral.main;
-
-  const getUser = async () => {
-    const data = await GET_USER(userId, token);
-    setUser(data);
-  };
-
-  useEffect(() => {
-    getUser().then();
-  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   if (!user) {
     return null;
@@ -45,6 +35,7 @@ const UserWidget = ({ userId, picturePath }) => {
     viewedProfile,
     impressions,
     friends,
+    picturePath,
   } = user;
 
   return (
@@ -53,7 +44,7 @@ const UserWidget = ({ userId, picturePath }) => {
       <FlexBetween
         gap="0.5rem"
         pb="1.1rem"
-        onClick={() => navigate(`/profile/${userId}`)}>
+        onClick={() => navigate(`/profile/${user._id}`)}>
         <FlexBetween gap="1rem">
           <UserImage image={picturePath} />
           <Box>

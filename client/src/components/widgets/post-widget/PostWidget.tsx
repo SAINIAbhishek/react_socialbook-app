@@ -6,29 +6,37 @@ import {
   ShareOutlined,
 } from '@mui/icons-material';
 import { Box, Divider, IconButton, Typography, useTheme } from '@mui/material';
-import { useDispatch, useSelector } from 'react-redux';
-import { LIKE_POST } from '../../../apis/PostApi';
-import WidgetWrapper from '../../widget-wrapper';
-import Friend from '../../friend';
-import FlexBetween from '../../flex-between';
-import { StateType } from '../../../state/StateType';
-import { setPost } from '../../../state';
+import { PostType } from '../../../types/PostType';
+import WidgetWrapper from '../widget-wrapper/WidgetWrapper';
+import { useAppDispatch, useAppSelector } from '../../../app/StoreHooks';
+import FlexBetween from '../../flex-between/FlexBetween';
+import { PATCH_LIKE_POST } from '../../../apis/PostApi';
+import { setPost } from '../../../slices/AuthSlice';
+import Friend from '../../friend/Friend';
 
-const PostWidget = ({
-  postId,
-  postUserId,
-  name,
-  description,
-  location,
-  picturePath,
-  userPicturePath,
-  likes,
-  comments,
-}) => {
-  const [isComments, setIsComments] = useState(false);
-  const dispatch = useDispatch();
-  const token = useSelector((state: StateType) => state.token);
-  const loggedInUserId = useSelector((state: StateType) => state.user._id);
+type Props = {
+  post: PostType;
+};
+
+const PostWidget = ({ post }: Props) => {
+  const dispatch = useAppDispatch();
+
+  const [isComments, setIsComments] = useState<boolean>(false);
+  const loggedInUserId = useAppSelector((state) => state?.user?._id ?? '');
+
+  const {
+    _id,
+    lastName,
+    firstName,
+    location,
+    userPicturePath,
+    likes,
+    description,
+    picturePath,
+    comments,
+    userId,
+  } = post;
+
   const isLiked = Boolean(likes[loggedInUserId]);
   const likeCount = Object.keys(likes).length;
 
@@ -36,23 +44,29 @@ const PostWidget = ({
   const main = palette.neutral.main;
   const primary = palette.primary.main;
 
-  const patchLike = async () => {
-    const updatedPost = await LIKE_POST(loggedInUserId, postId, token);
-    dispatch(setPost({ post: updatedPost }));
+  const handleLike = async () => {
+    if (!!loggedInUserId) {
+      const updatedPost = await PATCH_LIKE_POST(loggedInUserId, _id);
+      dispatch(
+        setPost({
+          post: updatedPost,
+        })
+      );
+    }
   };
 
   return (
     <WidgetWrapper m="2rem 0">
       <Friend
-        friendId={postUserId}
-        name={name}
+        friendId={userId}
+        name={`${firstName} ${lastName}`}
         subtitle={location}
         userPicturePath={userPicturePath}
       />
       <Typography color={main} sx={{ mt: '1rem' }}>
         {description}
       </Typography>
-      {picturePath && (
+      {picturePath && picturePath !== 'undefined' && (
         <img
           width="100%"
           height="auto"
@@ -64,7 +78,7 @@ const PostWidget = ({
       <FlexBetween mt="0.25rem">
         <FlexBetween gap="1rem">
           <FlexBetween gap="0.3rem">
-            <IconButton onClick={patchLike}>
+            <IconButton onClick={handleLike}>
               {isLiked ? (
                 <FavoriteOutlined sx={{ color: primary }} />
               ) : (
@@ -89,7 +103,7 @@ const PostWidget = ({
       {isComments && (
         <Box mt="0.5rem">
           {comments.map((comment, i) => (
-            <Box key={`${name}-${i}`}>
+            <Box key={`comment-${i}`}>
               <Divider />
               <Typography sx={{ color: main, m: '0.5rem 0', pl: '1rem' }}>
                 {comment}

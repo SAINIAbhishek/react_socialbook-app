@@ -1,22 +1,44 @@
-import { BASE_API_URL } from './BaseApi';
+import { CONFIG } from '../config/Config';
+import { Cookies } from 'react-cookie';
 
-export async function GET_FRIENDS(userId: string, token: string) {
-  return await fetch(`${BASE_API_URL}users/${userId}/friends`, {
+const cookies = new Cookies();
+const token = cookies.get(CONFIG.ACCESS_TOKEN);
+
+export async function GET_USER_FRIENDS(userId: string) {
+  return await fetch(`${CONFIG.BASE_API_URL}users/${userId}/friends`, {
     method: 'GET',
     headers: { Authorization: `Bearer ${token}` },
-  }).then((response) => response.json());
+  })
+    .then((response) => response.json())
+    .catch((err) => console.error(err));
 }
 
-export async function GET_USER(userId: string, token: string) {
-  return await fetch(`${BASE_API_URL}users/${userId}`, {
+export async function GET_USER(userId: string) {
+  return await fetch(`${CONFIG.BASE_API_URL}users/${userId}`, {
     method: 'GET',
     headers: { Authorization: `Bearer ${token}` },
-  }).then((response) => response.json());
+  })
+    .then((response) => response.json())
+    .catch((err) => console.error(err));
 }
 
-export async function GET_USER_POSTS(userId: string, token: string) {
-  return await fetch(`${BASE_API_URL}posts/${userId}/posts`, {
+export async function PATCH_USER_FRIEND(userId: string, friendId: string) {
+  return await fetch(`${CONFIG.BASE_API_URL}users/${userId}/${friendId}`, {
+    method: 'PATCH',
+    headers: {
+      Authorization: `Bearer ${token}`,
+      'Content-Type': 'application/json',
+    },
+  })
+    .then((response) => response.json())
+    .catch((err) => console.error(err));
+}
+
+export async function GET_USER_POSTS(userId: string) {
+  return await fetch(`${CONFIG.BASE_API_URL}posts/${userId}/posts`, {
     method: 'GET',
     headers: { Authorization: `Bearer ${token}` },
-  }).then((response) => response.json());
+  })
+    .then((response) => response.json())
+    .catch((err) => console.error(err));
 }

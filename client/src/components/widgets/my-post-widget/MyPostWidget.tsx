@@ -1,5 +1,4 @@
-import * as React from 'react';
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 import {
   AttachFileOutlined,
   DeleteOutlined,
@@ -20,37 +19,45 @@ import {
   useTheme,
 } from '@mui/material';
 import Dropzone from 'react-dropzone';
-import { useDispatch, useSelector } from 'react-redux';
+import { CONFIG } from '../../../config/Config';
+import { useAppDispatch, useAppSelector } from '../../../app/StoreHooks';
+import WidgetWrapper from '../widget-wrapper/WidgetWrapper';
+import FlexBetween from '../../flex-between/FlexBetween';
+import UserImage from '../../user-image/UserImage';
 import { CREATE_POST } from '../../../apis/PostApi';
-import WidgetWrapper from '../../widget-wrapper';
-import FlexBetween from '../../flex-between';
-import UserImage from '../../user-image';
-import { StateType } from '../../../state/StateType';
-import { setPosts } from '../../../state';
+import { setPosts } from '../../../slices/AuthSlice';
 
-const MyPostWidget = ({ picturePath }) => {
-  const dispatch = useDispatch();
-  const [isImage, setIsImage] = useState(false);
-  const [image, setImage] = useState({} as any);
-  const [post, setPost] = useState('');
+const MyPostWidget = () => {
+  const isNonMobileScreens = useMediaQuery(CONFIG.IS_NON_MOBILE_SCREENS_WIDTH);
+  const dispatch = useAppDispatch();
+
+  const user = useAppSelector((state) => state.user);
+
+  const [isImage, setIsImage] = useState<boolean>(false);
+  const [image, setImage] = useState<any>({});
+  const [post, setPost] = useState<string>('');
+
   const { palette }: any = useTheme();
-  const { _id } = useSelector((state: StateType) => state.user);
-  const token = useSelector((state: StateType) => state.token);
-  const isNonMobileScreens = useMediaQuery('(min-width: 1000px)');
   const mediumMain = palette.neutral.mediumMain;
   const medium = palette.neutral.medium;
 
-  const handlePost = async () => {
-    const posts = await CREATE_POST(_id, post, image, token);
-    dispatch(setPosts({ posts }));
-    setImage(null);
-    setPost('');
-  };
+  const handlePost = useCallback(async () => {
+    if (!!user?._id) {
+      const posts = await CREATE_POST(user._id, post, image);
+      dispatch(
+        setPosts({
+          posts,
+        })
+      );
+      setImage(null);
+      setPost('');
+    }
+  }, [image, post, user?._id, dispatch]);
 
   return (
     <WidgetWrapper>
       <FlexBetween gap="1.5rem">
-        <UserImage image={picturePath} />
+        {!!user && <UserImage image={user.picturePath} />}
         <InputBase
           placeholder="What's on your mind..."
           onChange={(e) => setPost(e.target.value)}

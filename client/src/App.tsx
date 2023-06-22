@@ -1,19 +1,19 @@
 import { useMemo } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import { useSelector } from 'react-redux';
 import { CssBaseline, ThemeProvider } from '@mui/material';
 import { createTheme } from '@mui/material/styles';
-import { StateType } from './state/StateType';
-import { themeSettings } from './theme';
+import { THEME_SETTINGS } from './Theme';
 import ProtectedRoutes from './routes/ProtectedRoutes';
-import HomePage from './pages/home-page';
-import ProfilePage from './pages/profile-page';
 import PublicRoutes from './routes/PublicRoutes';
-import LoginPage from './pages/login-page';
+import { useAppSelector } from './app/StoreHooks';
+import LoginPage from './pages/login-page/LoginPage';
+import RegisterPage from './pages/register-page/RegisterPage';
+import HomePage from './pages/home-page/HomePage';
+import ProfilePage from './pages/profile-page/ProfilePage';
 
 function App() {
-  const mode = useSelector((state: StateType) => state.mode);
-  const theme = useMemo(() => createTheme(themeSettings(mode)), [mode]);
+  const mode = useAppSelector((state) => state.mode);
+  const theme = useMemo(() => createTheme(THEME_SETTINGS(mode)), [mode]);
 
   return (
     <div className="app">
@@ -27,6 +27,7 @@ function App() {
             </Route>
             <Route element={<PublicRoutes />}>
               <Route path="/login" element={<LoginPage />} />
+              <Route path="/register" element={<RegisterPage />} />
               <Route path="/" element={<LoginPage />} />
             </Route>
           </Routes>

@@ -1,11 +1,11 @@
 import { PersonAddOutlined, PersonRemoveOutlined } from '@mui/icons-material';
 import { Box, IconButton, Typography, useTheme } from '@mui/material';
-import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import FlexBetween from '../flex-between';
-import UserImage from '../user-image';
-import { StateType } from '../../state/StateType';
-import { setFriends } from '../../state';
+import { useAppDispatch, useAppSelector } from '../../app/StoreHooks';
+import FlexBetween from '../flex-between/FlexBetween';
+import UserImage from '../user-image/UserImage';
+import { PATCH_USER_FRIEND } from '../../apis/UserApi';
+import { setFriends } from '../../slices/AuthSlice';
 
 type Props = {
   friendId: string;
@@ -15,11 +15,12 @@ type Props = {
 };
 
 const Friend = ({ friendId, name, subtitle, userPicturePath }: Props) => {
-  const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { _id } = useSelector((state: StateType) => state.user);
-  const token = useSelector((state: StateType) => state.token);
-  const friends = useSelector((state: StateType) => state.user?.friends);
+  const dispatch = useAppDispatch();
+
+  const user = useAppSelector((state) => state?.user);
+  const isFriend = user?.friends?.find((friend) => friend._id === friendId);
+  const showAddFriendIcon = (user && user._id !== friendId) ?? true;
 
   const { palette }: any = useTheme();
   const primaryLight = palette.primary.light;
@@ -27,21 +28,15 @@ const Friend = ({ friendId, name, subtitle, userPicturePath }: Props) => {
   const main = palette.neutral.main;
   const medium = palette.neutral.medium;
 
-  const isFriend = friends?.find((friend) => friend._id === friendId);
-
-  const patchFriend = async () => {
-    const response = await fetch(
-      `http://localhost:3001/users/${_id}/${friendId}`,
-      {
-        method: 'PATCH',
-        headers: {
-          Authorization: `Bearer ${token}`,
-          'Content-Type': 'application/json',
-        },
-      }
-    );
-    const data = await response.json();
-    dispatch(setFriends({ friends: data }));
+  const handleFriend = async () => {
+    if (user && user._id) {
+      const updatedFriends = await PATCH_USER_FRIEND(user._id, friendId);
+      dispatch(
+        setFriends({
+          friends: updatedFriends,
+        })
+      );
+    }
   };
 
   return (
@@ -70,15 +65,17 @@ const Friend = ({ friendId, name, subtitle, userPicturePath }: Props) => {
           </Typography>
         </Box>
       </FlexBetween>
-      <IconButton
-        onClick={() => patchFriend()}
-        sx={{ backgroundColor: primaryLight, p: '0.6rem' }}>
-        {isFriend ? (
-          <PersonRemoveOutlined sx={{ color: primaryDark }} />
-        ) : (
-          <PersonAddOutlined sx={{ color: primaryDark }} />
-        )}
-      </IconButton>
+      {showAddFriendIcon && (
+        <IconButton
+          onClick={handleFriend}
+          sx={{ backgroundColor: primaryLight, p: '0.6rem' }}>
+          {isFriend ? (
+            <PersonRemoveOutlined sx={{ color: primaryDark }} />
+          ) : (
+            <PersonAddOutlined sx={{ color: primaryDark }} />
+          )}
+        </IconButton>
+      )}
     </FlexBetween>
   );
 };

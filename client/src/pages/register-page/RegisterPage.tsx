@@ -1,10 +1,10 @@
-import * as React from 'react';
-import Form from './form';
 import { Box, Typography, useMediaQuery, useTheme } from '@mui/material';
+import { CONFIG } from '../../config/Config';
+import RegisterForm from './RegisterForm';
 
-const LoginPage = () => {
+const RegisterPage = () => {
   const background = useTheme().palette.background['alt'];
-  const isNonMobileScreens = useMediaQuery('(min-width: 1000px)');
+  const isNonMobileScreens = useMediaQuery(CONFIG.IS_NON_MOBILE_SCREENS_WIDTH);
 
   return (
     <Box>
@@ -31,10 +31,10 @@ const LoginPage = () => {
         <Typography fontWeight="500" variant="h5" sx={{ mb: '1.5rem' }}>
           Welcome to Socialbook!
         </Typography>
-        <Form />
+        <RegisterForm />
       </Box>
     </Box>
   );
 };
 
-export default LoginPage;
+export default RegisterPage;
