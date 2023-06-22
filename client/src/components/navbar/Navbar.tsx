@@ -27,11 +27,14 @@ import FlexBetween from '../flex-between/FlexBetween';
 import { setLogout, setThemeMode } from '../../slices/AuthSlice';
 
 const Navbar = () => {
-  const [isMobileMenuToggled, setIsMobileMenuToggled] = useState(false);
+  const isNonMobileScreens = useMediaQuery(CONFIG.IS_NON_MOBILE_SCREENS_WIDTH);
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
+
+  const [isMobileMenuToggled, setIsMobileMenuToggled] =
+    useState<boolean>(false);
+
   const user = useAppSelector((state) => state.user);
-  const isNonMobileScreens = useMediaQuery(CONFIG.IS_NON_MOBILE_SCREENS_WIDTH);
 
   const theme: any = useTheme();
   const neutralLight = theme.palette.neutral.light;

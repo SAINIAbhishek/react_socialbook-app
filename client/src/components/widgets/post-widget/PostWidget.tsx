@@ -20,7 +20,8 @@ type Props = {
 
 const PostWidget = ({ post }: Props) => {
   const dispatch = useAppDispatch();
-  const [isComments, setIsComments] = useState(false);
+
+  const [isComments, setIsComments] = useState<boolean>(false);
   const loggedInUserId = useAppSelector((state) => state?.user?._id ?? '');
 
   const {
@@ -35,8 +36,6 @@ const PostWidget = ({ post }: Props) => {
     comments,
     userId,
   } = post;
-
-  console.log(post);
 
   const isLiked = Boolean(likes[loggedInUserId]);
   const likeCount = Object.keys(likes).length;

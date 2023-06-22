@@ -9,6 +9,7 @@ import { useAppSelector } from './app/StoreHooks';
 import LoginPage from './pages/login-page/LoginPage';
 import RegisterPage from './pages/register-page/RegisterPage';
 import HomePage from './pages/home-page/HomePage';
+import ProfilePage from './pages/profile-page/ProfilePage';
 
 function App() {
   const mode = useAppSelector((state) => state.mode);
@@ -22,6 +23,7 @@ function App() {
           <Routes>
             <Route element={<ProtectedRoutes />}>
               <Route path="/home" element={<HomePage />} />
+              <Route path="/profile/:userId" element={<ProfilePage />} />
             </Route>
             <Route element={<PublicRoutes />}>
               <Route path="/login" element={<LoginPage />} />
