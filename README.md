@@ -1,35 +1,44 @@
 # Socialbook Application
 
-It is a learning project to showcase a Social Media Application. Frontend is developed in React.js and Backend is developed in Node.js. 
+This project is bootstrapped with create-react-app.
 
-It demonstrates the use case of the different libraries such as Redux, Formik and more.
+## Project overview
 
-The application is written by following the Coding Best Practices.
+The purpose of this project is to demonstrate a fully functional FullStack Social Media Application. The client-side, or frontend component, is developed using React.js, while the server-side, or backend component, is built using Node.js.
+
+Mainly, the focused on this project is on client-side.
+
+## Description of the project structure for the client-side
+
+The project structure adheres to industry best practices.
+
+The client directory is organized based on functionality and type, with directory names chosen to justify their purpose.
+
+Note: The project also follows a consistent naming convention. Directories are named using kebab-case, while files use pascal-case.
+
 
 <hr />
 
-![Application demo](Screenshot%202023-03-24%20145545.png)
+## External libraries or Frontend stacks:
 
-<hr />
+By using the below technologies and tools, the project benefits from enhanced type safety, improved testability, simplified data fetching, efficient styling, code quality enforcement, and consistent code formatting.
 
-### Frontend Stacks:
-- React.js
-- Redux
+- TypeScript
+- React redux
 - Redux persist
-- Redux Toolkit
-- React Cookie
+- Redux toolkit
+- React cookie
 - MUI (offers a comprehensive suite of UI tools to help you ship new features faster)
 - Formik (building forms)
 - yup (a schema builder for runtime value parsing and validation)
-- React-router-dom
+- React router dom
 - Emotion library (designed for writing css styles with JavaScript)
-- React Dropzone
-- Testing library
-- React dom
+- React dropzone
+- Eslint
+- Prettier
 
-<hr />
+## External libraries or Backend stacks:
 
-### Backend Stacks:
 - NodeJS
 - MongoDB
 - Express
@@ -43,3 +52,8 @@ The application is written by following the Coding Best Practices.
 - Morgan
 - Dotenv
 - Nodemon
+
+<hr />
+
+![Application demo](Screenshot%202023-03-24%20145545.png)
+
